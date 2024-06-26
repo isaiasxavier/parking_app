@@ -6,8 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class VehicleRequest extends FormRequest
 {
-    public function rules()
-    : array
+    public function rules(): array
     {
         return [
             'user_id' => ['required', 'exists:users'],
@@ -15,8 +14,7 @@ class VehicleRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    : true
+    public function authorize(): true
     {
         return true;
     }

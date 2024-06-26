@@ -13,30 +13,29 @@ class ParkingController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index()
-    : AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Parking::class);
 
         return ParkingResource::collection(Parking::all());
     }
 
-    public function store(ParkingRequest $request)
-    : ParkingResource{
+    public function store(ParkingRequest $request): ParkingResource
+    {
         $this->authorize('create', Parking::class);
 
         return new ParkingResource(Parking::create($request->validated()));
     }
 
-    public function show(Parking $parking)
-    : ParkingResource{
+    public function show(Parking $parking): ParkingResource
+    {
         $this->authorize('view', $parking);
 
         return new ParkingResource($parking);
     }
 
-    public function update(ParkingRequest $request, Parking $parking)
-    : ParkingResource{
+    public function update(ParkingRequest $request, Parking $parking): ParkingResource
+    {
         $this->authorize('update', $parking);
 
         $parking->update($request->validated());
@@ -44,8 +43,8 @@ class ParkingController extends Controller
         return new ParkingResource($parking);
     }
 
-    public function destroy(Parking $parking)
-    : JsonResponse{
+    public function destroy(Parking $parking): JsonResponse
+    {
         $this->authorize('delete', $parking);
 
         $parking->delete();

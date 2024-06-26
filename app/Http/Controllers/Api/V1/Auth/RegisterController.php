@@ -6,20 +6,39 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-
+/**
+ * Class RegisterController
+ *
+ * Esta classe é responsável por registrar um novo usuário no sistema.
+ */
 class RegisterController extends Controller
 {
     public function __invoke(UserRequest $request)
     {
-        $validated = $request->validated();
+        /**
+         * Handle the incoming request.
+         *
+         * Este método é responsável por registrar um novo usuário no sistema.
+         * Ele primeiro valida os dados da solicitação usando a classe 'UserRequest'.
+         * Em seguida, ele cria um novo usuário com os dados validados.
+         * A senha do usuário é criptografada usando a função 'Hash::make'.
+         * Em seguida, ele dispara um evento 'Registered' para o novo usuário.
+         * O nome do dispositivo é extraído do agente do usuário sendo usado como o nome do token.
+         * Finalmente, ele retorna uma resposta JSON que inclui o token de acesso.
+         *
+         * @param  UserRequest  $request  A solicitação recebida. Deve conter os dados do usuário a ser registrado.
+         * @return JsonResponse Uma resposta JSON contendo o token de acesso do novo usuário.
+         */
+        $validatedData = $request->validated();
 
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
         event(new Registered($user));
@@ -28,25 +47,6 @@ class RegisterController extends Controller
 
         return response()->json([
             'access_token' => $user->createToken($device)->plainTextToken,
-        ], Response::HTTP_CREATED);
-        /*$request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        $device = substr($request->userAgent() ?? '', 0, 255);
-
-        return response()->json([
-            'access_token' => $user->createToken($device)->plainTextToken,
-        ], Response::HTTP_CREATED);*/
+        ], ResponseAlias::HTTP_CREATED);
     }
 }

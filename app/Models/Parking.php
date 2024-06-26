@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Parking extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -20,26 +21,22 @@ class Parking extends Model
         'total_price',
     ];
 
-    public function user()
-    : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function vehicle()
-    : BelongsTo
+    public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function zone()
-    : BelongsTo
+    public function zone(): BelongsTo
     {
         return $this->belongsTo(Zone::class);
     }
 
-    protected function casts()
-    : array
+    protected function casts(): array
     {
         return [
             'start_time' => 'datetime',

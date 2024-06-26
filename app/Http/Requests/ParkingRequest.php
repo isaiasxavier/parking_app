@@ -6,8 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ParkingRequest extends FormRequest
 {
-    public function rules()
-    : array
+    public function rules(): array
     {
         return [
             'user_id' => ['required', 'exists:users'],
@@ -19,8 +18,7 @@ class ParkingRequest extends FormRequest
         ];
     }
 
-    public function authorize()
-    : true
+    public function authorize(): true
     {
         return true;
     }
