@@ -1,6 +1,11 @@
 <?php
+/*
+ * @author Isaias Xavier Santana
+ * <https://github.com/isaiasxavier>
+ * Copyright (c) 2024.
+ */
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;

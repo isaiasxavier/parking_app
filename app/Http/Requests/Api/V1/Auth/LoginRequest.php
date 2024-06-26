@@ -5,7 +5,7 @@
  * Copyright (c) 2024.
  */
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
