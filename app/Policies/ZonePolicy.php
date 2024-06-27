@@ -3,19 +3,19 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Zone;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ZonePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(?User $user): true
     {
-        //
+        // Qualquer usuário, autenticado ou não, pode ver a lista de Zone
+        return true;
     }
 
-    public function view(User $user, Zone $zone) {}
+    /*public function view(User $user, Zone $zone) {}
 
     public function create(User $user) {}
 
@@ -25,5 +25,5 @@ class ZonePolicy
 
     public function restore(User $user, Zone $zone) {}
 
-    public function forceDelete(User $user, Zone $zone) {}
+    public function forceDelete(User $user, Zone $zone) {}*/
 }

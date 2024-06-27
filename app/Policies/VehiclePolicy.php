@@ -10,9 +10,9 @@ class VehiclePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(): true
+    public function viewAny(User $user): true
     {
-        // Qualquer usuário autenticado pode ver a lista de veículos
+        // Qualquer usuário pode ver a lista de Vehicle
         return true;
     }
 
@@ -22,7 +22,7 @@ class VehiclePolicy
         return $user->id === $vehicle->user_id;
     }
 
-    public function create(): true
+    public function create(User $user): true
     {
         // Qualquer usuário autenticado pode criar um veículo
         return true;

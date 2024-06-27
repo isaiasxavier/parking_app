@@ -1,18 +1,37 @@
 <?php
+/*
+ * @author Isaias Xavier Santana
+ * <https://github.com/isaiasxavier>
+ * Copyright (c) 2024.
+ */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\ZoneRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ZoneResource;
 use App\Models\Zone;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ZoneController extends Controller
 {
     use AuthorizesRequests;
 
+    /**
+     * Método para listar todas as zonas.
+     *
+     * Este método é responsável por retornar uma coleção de todas as zonas
+     * existentes no banco de dados. Ele primeiro autoriza a ação 'viewAny' para
+     * a classe Zone, o que significa que qualquer usuário, autenticado ou não,
+     * tem permissão para ver a lista de zonas.
+     *
+     * Após a autorização, ele recupera todas as zonas do banco de dados usando
+     * o método 'all' na classe 'Zone'. Em seguida, ele retorna essas zonas como
+     * uma coleção de recursos 'ZoneResource', que transforma cada instância de
+     * 'Zone' em um array formatado para a resposta da API.
+     *
+     * @return AnonymousResourceCollection Coleção de recursos de zonas.
+     */
     public function index(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Zone::class);
@@ -20,7 +39,7 @@ class ZoneController extends Controller
         return ZoneResource::collection(Zone::all());
     }
 
-    public function store(ZoneRequest $request): ZoneResource
+    /*public function store(ZoneRequest $request): ZoneResource
     {
         $this->authorize('create', Zone::class);
 
@@ -50,5 +69,5 @@ class ZoneController extends Controller
         $zone->delete();
 
         return response()->json();
-    }
+    }*/
 }
