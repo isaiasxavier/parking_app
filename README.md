@@ -21,29 +21,41 @@ To set up the project, follow the steps below:
 
 The API has the following routes:
 
-- `POST /api/v1/auth/register`: Registers a new user in the system. This method first validates the request data using
-  the 'UserRequest' class. Then, it creates a new user with the validated data. The user's password is hashed using
-  the 'Hash::make' function. Then, it fires a 'Registered' event for the new user. The device name is extracted from the
-  user agent being used as the token name. Finally, it returns a JSON response that includes the access token. Expects a
-  request body with the fields `name`, `email`, and `password`.
-- `POST /api/v1/auth/login`: Authenticates a user and generates an access token. Expects a request body with the
-  fields  `email` and `password`. If the user is found and the password matches, it returns a JSON response containing
-  the access token. If the user is not found or the password does not match, it returns a validation error. Optionally,
-  a `remember` field can be included in the request body to control the expiration of the token.
-- `POST /api/v1/auth/logout`: Logs out the authenticated user. This method retrieves the authenticated user through
-  the 'auth()' helper, and then deletes the current access token. After deleting the token, it returns an HTTP response
-  with status 204 (No Content), indicating that the operation was successful and there is no content to return.
-- `PUT /api/v1/auth/password`: Updates the password of the authenticated user. This method receives
-  a `PasswordUpdateRequest` object that validates the input data. It first checks if the new password is the same as the
-  current password. If it is, it returns a JSON response with an error message and an HTTP status code 422 (
-  Unprocessable Entity). If the new password is different from the current password, it updates the user's password in
-  the database and returns a JSON response with a success message and an HTTP status code 202 (Accepted). Expects a
-  request body with the field `password`.
-- `PUT /api/v1/auth/profile`: Updates the authenticated user's profile information. This method validates the received
-  data through the 'ProfileRequest' object, updates the authenticated user's information, and returns a JSON with the
-  validated data and an HTTP status code 202 (Accepted). Expects a request body with the fields that need to be updated.
-- `GET /api/v1/auth/profile`: Displays the authenticated user's profile information. This method returns a JSON with
-  the 'name' and 'email' fields of the authenticated user.
+Sure, here's a more concise summary:
+
+- `POST /api/v1/auth/register`: Registers a new user with `name`, `email`, and `password`. Returns an access token.
+- `POST /api/v1/auth/login`: Authenticates a user with `email` and `password`. Returns an access token or a validation
+  error.
+- `POST /api/v1/auth/logout`: Logs out the authenticated user and deletes the current access token.
+- `PUT /api/v1/auth/password`: Updates the authenticated user's password. Returns a success message or an error if the
+  new password is the same as the current one.
+- `PUT /api/v1/auth/profile`: Updates the authenticated user's profile information. Returns the updated data.
+- `GET /api/v1/auth/profile`: Returns the authenticated user's 'name' and 'email'.
+-
+- `GET /api/v1/vehicles`: Displays a list of all vehicles. This method returns a collection of all vehicles in the
+  database, each transformed into a 'VehicleResource'.
+
+- `POST /api/v1/vehicles`: Stores a new vehicle in the database. This method first validates the request data using
+  the 'StoreVehicleRequest' class. If the data is valid, it creates a new vehicle in the database and returns a new
+  instance of 'VehicleResource' representing the newly created vehicle. Expects a request body with the vehicle data to
+  be created.
+
+- `GET /api/v1/vehicles/{vehicle}`: Displays the information of a specific vehicle. This method returns a new instance
+  of 'VehicleResource', passing the specific vehicle.
+
+- `PUT /api/v1/vehicles/{vehicle}`: Updates the information of a specific vehicle. This method first validates the
+  request data using the 'StoreVehicleRequest' class. If the data is valid, it updates the vehicle in the database and
+  returns a JSON response with a new instance of 'VehicleResource', passing the updated vehicle, and an HTTP status code
+  202 (Accepted). Expects a request body with the new vehicle data.
+
+- `DELETE /api/v1/vehicles/{vehicle}`: Deletes a specific vehicle. This method deletes the vehicle from the database and
+  returns an HTTP response with status 204 (No Content), indicating that the operation was successful and there is no
+  content to return.
+-
+- `GET /api/v1/zones`: Lists all zones. This method authorizes the 'viewAny' action for the Zone class, meaning that any
+  user, authenticated or not, is allowed to view the list of zones. It retrieves all zones from the database using the '
+  all' method on the 'Zone' class. Then, it returns these zones as a collection of 'ZoneResource' resources, which
+  transform each 'Zone' instance into an array formatted for the API response.
 
 ## Contributing
 
