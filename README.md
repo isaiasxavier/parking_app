@@ -21,8 +21,6 @@ To set up the project, follow the steps below:
 
 The API has the following routes:
 
-Sure, here's a more concise summary:
-
 - `POST /api/v1/auth/register`: Registers a new user with `name`, `email`, and `password`. Returns an access token.
 - `POST /api/v1/auth/login`: Authenticates a user with `email` and `password`. Returns an access token or a validation
   error.
@@ -56,10 +54,6 @@ Sure, here's a more concise summary:
   user, authenticated or not, is allowed to view the list of zones. It retrieves all zones from the database using the '
   all' method on the 'Zone' class. Then, it returns these zones as a collection of 'ZoneResource' resources, which
   transform each 'Zone' instance into an array formatted for the API response.
-
-## Contributing
-
-Contributions are welcome! Please read the contribution guidelines before submitting a pull request.
 
 ## License
 
