@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\VehicleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,8 @@ Route::prefix('v1/auth')->group(function () {
         Route::put('/password', PasswordUpdateController::class);
         Route::post('/logout', LogoutController::class);
     });
+});
+
+Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/vehicles', VehicleController::class);
 });

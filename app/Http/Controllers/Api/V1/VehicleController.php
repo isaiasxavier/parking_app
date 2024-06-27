@@ -1,13 +1,20 @@
 <?php
+/*
+ * @author Isaias Xavier Santana
+ * <https://github.com/isaiasxavier>
+ * Copyright (c) 2024.
+ */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\VehicleRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\StoreVehicleRequest;
 use App\Http\Resources\VehicleResource;
 use App\Models\Vehicle;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class VehicleController extends Controller
 {
@@ -20,7 +27,7 @@ class VehicleController extends Controller
         return VehicleResource::collection(Vehicle::all());
     }
 
-    public function store(VehicleRequest $request): VehicleResource
+    public function store(StoreVehicleRequest $request): VehicleResource
     {
         $this->authorize('create', Vehicle::class);
 
@@ -34,13 +41,13 @@ class VehicleController extends Controller
         return new VehicleResource($vehicle);
     }
 
-    public function update(VehicleRequest $request, Vehicle $vehicle): VehicleResource
+    public function update(StoreVehicleRequest $request, Vehicle $vehicle): JsonResponse
     {
         $this->authorize('update', $vehicle);
 
         $vehicle->update($request->validated());
 
-        return new VehicleResource($vehicle);
+        return response()->json(new VehicleResource($vehicle), ResponseAlias::HTTP_ACCEPTED);
     }
 
     public function destroy(Vehicle $vehicle): JsonResponse
