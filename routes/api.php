@@ -6,6 +6,8 @@
  */
 
 use App\Http\Controllers\Api\V1\Auth\LoginController;
+use App\Http\Controllers\Api\V1\Auth\LogoutController;
+use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use Illuminate\Http\Request;
@@ -22,5 +24,7 @@ Route::prefix('v1/auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', [ProfileController::class, 'show']);
         Route::put('/profile', [ProfileController::class, 'update']);
+        Route::put('/password', PasswordUpdateController::class);
+        Route::post('/logout', LogoutController::class);
     });
 });
