@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\Parking\ActiveScope;
-use App\Models\Scopes\Parking\StoppedScope;
+use App\Models\Scopes\Parking\UserScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +22,11 @@ class Parking extends Model
         'total_price',
     ];
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new UserScope());
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -38,14 +42,14 @@ class Parking extends Model
         return $this->belongsTo(Zone::class);
     }
 
-    protected static function boot(): void
+    public function scopeActive($query)
     {
-        parent::boot();
+        return $query->whereNull('stop_time');
+    }
 
-        static::addGlobalScopes([
-            new ActiveScope(),
-            new StoppedScope(),
-        ]);
+    public function scopeStopped($query)
+    {
+        return $query->whereNotNull('stop_time');
     }
 
     protected function casts(): array

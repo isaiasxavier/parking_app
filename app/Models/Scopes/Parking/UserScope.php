@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
-class ActiveScope implements Scope
+class UserScope implements Scope
 {
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->whereNull('stop_time');
+        /*Log::info('User ID: '.auth()->id());*/
+        $builder->where('user_id', auth()->id());
     }
 }
