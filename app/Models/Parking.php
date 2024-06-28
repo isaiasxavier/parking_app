@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Parking\ActiveScope;
+use App\Models\Scopes\Parking\StoppedScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +36,16 @@ class Parking extends Model
     public function zone(): BelongsTo
     {
         return $this->belongsTo(Zone::class);
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::addGlobalScopes([
+            new ActiveScope(),
+            new StoppedScope(),
+        ]);
     }
 
     protected function casts(): array

@@ -12,19 +12,16 @@ class ParkingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             'id' => $this->id,
-            'start_time' => $this->start_time,
-            'stop_time' => $this->stop_time,
+            'start_time' => $this->start_time->toDateTimeString(),
+            'stop_time' => $this->stop_time?->toDateTimeString(),
             'total_price' => $this->total_price,
 
-            'user_id' => $this->user_id,
-            'vehicle_id' => $this->vehicle_id,
-            'zone_id' => $this->zone_id,
-
             'vehicle' => new VehicleResource($this->whenLoaded('vehicle')),
-            'zone' => new ZoneResource($this->whenLoaded('zone')), //
+            'zone' => new ZoneResource($this->whenLoaded('zone')),
+
+            /*'vehicle' => array_diff_key((new VehicleResource($this->whenLoaded('vehicle')))->resolve($request), array_flip(['id'])),
+            'zone' => array_diff_key((new ZoneResource($this->whenLoaded('zone')))->resolve($request), array_flip(['id'])),*/
         ];
     }
 }
