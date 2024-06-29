@@ -54,6 +54,21 @@ The API has the following routes:
   user, authenticated or not, is allowed to view the list of zones. It retrieves all zones from the database using the '
   all' method on the 'Zone' class. Then, it returns these zones as a collection of 'ZoneResource' resources, which
   transform each 'Zone' instance into an array formatted for the API response.
+-
+- `POST /api/v1/parkings/start`: Starts a parking session. Validates the request data and creates a new parking record
+  if there isn't an active parking session for the specified vehicle. The authenticated user must have permission to
+  create a parking.
+
+- `GET /api/v1/parkings/{parking}`: Displays a specific parking session. Searches for the parking in the database using
+  the ID provided in the route. If the parking is not found, it returns a 404 error. If the parking is found, it checks
+  if the authenticated user has permission to view it. If the user doesn't have permission, it returns a 403 error.
+
+- `PUT /api/v1/parkings/{parking}/stop`: Stops the parking session. Searches for the parking in the database using the
+  ID provided in the route. If the parking is not found, it returns a 404 error. If the parking is found, it checks if
+  the authenticated user has permission to update it. If the user doesn't have permission, it returns a 403 error. If
+  the user has permission, it checks if the parking has already been stopped (i.e., if 'stop_time' is not null). If the
+  parking has already been stopped, it returns a 422 error. If the parking has not been stopped, it updates the '
+  stop_time' field of the parking to the current time and calculates the total price.
 
 ## License
 

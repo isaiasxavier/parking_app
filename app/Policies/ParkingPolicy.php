@@ -10,20 +10,32 @@ class ParkingPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    /*public function viewAny(User $user)
     {
         //
+    }*/
+
+    public function view(User $user, Parking $parking): bool
+    {
+        // O usuário só pode ver os detalhes do Parking se ele for o criador
+        return $user->id === $parking->user_id;
     }
 
-    public function view(User $user, Parking $parking) {}
+    public function create(User $user): true
+    {
+        // Qualquer usuário autenticado pode criar um Parking
+        return true;
+    }
 
-    public function create(User $user) {}
+    public function update(User $user, Parking $parking): bool
+    {
+        // O usuário só pode atualizar o Parking se ele for o criador
+        return $user->id === $parking->user_id;
+    }
 
-    public function update(User $user, Parking $parking) {}
-
-    public function delete(User $user, Parking $parking) {}
+    /*public function delete(User $user, Parking $parking) {}
 
     public function restore(User $user, Parking $parking) {}
 
-    public function forceDelete(User $user, Parking $parking) {}
+    public function forceDelete(User $user, Parking $parking) {}*/
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\ParkingRequest;
 use App\Http\Resources\ParkingResource;
 use App\Models\Parking;
+use App\Services\Api\V1\ParkingPriceService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -22,8 +23,13 @@ class ParkingController extends Controller
     /**
      * Inicia um estacionamento.
      *
+     * Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
+     * 'authorize' com a ação 'create' e a classe 'Parking'.
+     *
      * Este método valida os dados da solicitação usando a classe ParkingRequest.
-     * Se a validação passar, ele verifica se já existe um estacionamento ativo para o veículo especificado.
+     * Se a validação passar, ele verifica se já existe um estacionamento ativo para o veículo especificado (através
+     * do 'start_time') e se a coluna 'stop_time' é nula (o que significa que o veículo ainda nao finalizou o
+     * estacionamento).
      * Se existir, ele retorna uma resposta JSON com um erro.
      * Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do estacionamento.
      *
@@ -32,9 +38,11 @@ class ParkingController extends Controller
      */
     public function start(ParkingRequest $request)
     {
+        $this->authorize('create', Parking::class);
+
         $validatedData = $request->validated();
 
-        if (Parking::active()->where('vehicle_id', $request->vehicle_id)->exists()) {
+        if (Parking::active()->where('vehicle_id', $request->vehicle_id)->whereNull('stop_time')->exists()) {
             return response()->json([
                 'errors' => ['general' => ['Can\'t start parking twice using same vehicle. Please stop currently active parking.']],
             ], ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
@@ -49,40 +57,72 @@ class ParkingController extends Controller
     /**
      * Exibe um estacionamento específico.
      *
-     * Este método recebe um objeto Parking como parâmetro, que é automaticamente resolvido pelo Laravel
-     * através do mecanismo de injeção de dependência. O Laravel automaticamente busca o estacionamento
+     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
+     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
      * correspondente no banco de dados usando o ID fornecido na rota.
      *
-     * O método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
-     * A classe ParkingResource é responsável por formatar a resposta JSON.
+     * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
+     * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para visualizá-lo.
+     * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
+     * Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
      *
-     * @param  Parking  $parking  O estacionamento a ser exibido.
-     * @return ParkingResource A resposta JSON.
+     * @param  int  $id  O ID do estacionamento a ser exibido.
+     * @return ParkingResource|JsonResponse
      */
-    public function show(Parking $parking): ParkingResource
+    public function show(int $id)
     {
+        $parking = Parking::find($id);
+
+        if (! $parking) {
+            return response()->json([
+                'errors' => ['general' => ['You don\'t Have a Parking With this ID to SHOW!']],
+            ], ResponseAlias::HTTP_NOT_FOUND);
+        }
+
+        $this->authorize('view', $parking);
+
         return new ParkingResource($parking);
     }
 
     /**
      * Para o estacionamento.
      *
-     * Este método recebe um objeto Parking como parâmetro, que é automaticamente resolvido pelo Laravel
-     * através do mecanismo de injeção de dependência. O Laravel automaticamente busca o estacionamento
+     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
+     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
      * correspondente no banco de dados usando o ID fornecido na rota.
      *
-     * O método atualiza o campo 'stop_time' do estacionamento para a hora atual, efetivamente parando o estacionamento.
+     * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
+     * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para atualizá-lo.
+     * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
+     * Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é nulo).
+     * Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422.
+     * Se o estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e calcula o preço total.
+     * Finalmente, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
      *
-     * O método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
-     * A classe ParkingResource é responsável por formatar a resposta JSON.
-     *
-     * @param  Parking  $parking  O estacionamento a ser parado.
-     * @return ParkingResource A resposta JSON.
+     * @param  int  $id  O ID do estacionamento a ser parado.
+     * @return ParkingResource|JsonResponse
      */
-    public function stop(Parking $parking): ParkingResource
+    public function stop(int $id)
     {
+        $parking = Parking::find($id);
+
+        if (! $parking) {
+            return response()->json([
+                'errors' => ['general' => ['You don\'t Have a Parking With this ID to STOP!']],
+            ], ResponseAlias::HTTP_NOT_FOUND);
+        }
+
+        if ($parking->stop_time !== null) {
+            return response()->json([
+                'errors' => ['general' => ['Parking already stopped.']],
+            ], ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $this->authorize('update', $parking);
+
         $parking->update([
             'stop_time' => now(),
+            'total_price' => ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time),
         ]);
 
         return new ParkingResource($parking);
