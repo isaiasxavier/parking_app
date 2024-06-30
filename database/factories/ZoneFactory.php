@@ -10,14 +10,13 @@ class ZoneFactory extends Factory
 {
     protected $model = Zone::class;
 
-    public function definition()
-    : array
+    public function definition(): array
     {
         return [
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'name' => $this->faker->name(),
-            'price_per_hour' => $this->faker->word(),
+            'price_per_hour' => $this->faker->numberBetween(100, 300),
         ];
     }
 }
