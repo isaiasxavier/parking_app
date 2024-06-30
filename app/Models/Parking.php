@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Parking
+ */
 class Parking extends Model
 {
     use HasFactory;
@@ -52,11 +55,21 @@ class Parking extends Model
         return $query->whereNotNull('stop_time');
     }
 
+    public function setTotalPriceAttribute($value)
+    {
+        $this->attributes['total_price'] = $value;
+    }
+
+    public function getTotalPriceAttribute($value)
+    {
+        return $value * 0.01;
+    }
+
     protected function casts(): array
     {
         return [
-            'start_time' => 'datetime',
-            'stop_time' => 'datetime',
+            'start_time' => 'datetime:Y-m-d H:i:s',
+            'stop_time' => 'datetime:Y-m-d H:i:s',
         ];
     }
 }
