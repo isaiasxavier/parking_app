@@ -24,7 +24,7 @@ class ParkingPolicy
     public function create(User $user): true
     {
         // Qualquer usuário autenticado pode criar um Parking
-        return true;
+        return auth()->check();
     }
 
     public function update(User $user, Parking $parking): bool

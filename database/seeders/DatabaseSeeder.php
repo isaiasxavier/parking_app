@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Parking;
-use App\Models\User;
-use App\Models\Vehicle;
 use App\Models\Zone;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(3)->create();
-        Vehicle::factory(3)->create();
-        Zone::factory(3)->create();
-        Parking::factory(3)->create();
+        /*User::factory(3)->create();*/
+        /*Vehicle::factory(5)->create();*/
+        Zone::factory(2)->create();
+        /*Parking::factory(2)->create();*/
     }
 }

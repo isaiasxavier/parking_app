@@ -35,9 +35,13 @@ class VehicleController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $this->authorize('viewAny', Vehicle::class);
+        $vehicles = Vehicle::where('user_id', auth()->id())->get();
 
-        return VehicleResource::collection(Vehicle::all());
+        foreach ($vehicles as $vehicle) {
+            $this->authorize('viewOwn', $vehicle);
+        }
+
+        return VehicleResource::collection($vehicles);
     }
 
     /**

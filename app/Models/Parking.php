@@ -62,7 +62,7 @@ class Parking extends Model
 
     public function getTotalPriceAttribute($value)
     {
-        return $value * 0.01;
+        return round($value / 100, 2);
     }
 
     protected function casts(): array

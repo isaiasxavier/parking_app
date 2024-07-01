@@ -4,8 +4,13 @@ namespace App\Providers;
 
 use App\Models\Parking;
 use App\Models\Vehicle;
+use App\Models\Zone;
 use App\Observers\ParkingObserver;
 use App\Observers\VehicleObserver;
+use App\Policies\ParkingPolicy;
+use App\Policies\VehiclePolicy;
+use App\Policies\ZonePolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +36,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Vehicle::observe(VehicleObserver::class);
         Parking::observe(ParkingObserver::class);
+
+        Gate::policy(Zone::class, ZonePolicy::class);
+        Gate::policy(Vehicle::class, VehiclePolicy::class);
+        Gate::policy(Parking::class, ParkingPolicy::class);
     }
 }

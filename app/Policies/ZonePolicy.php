@@ -9,9 +9,12 @@ class ZonePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(?User $user): true
+    public function viewAny(?User $user): bool
     {
-        // Qualquer usuário, autenticado ou não, pode ver a lista de Zone
+        /*// Apenas usuários autenticados podem ver a lista de Zone
+        return auth()->check();*/
+
+        //Qualquer usuário pode ver as ZONE
         return true;
     }
 

@@ -10,10 +10,17 @@ class VehiclePolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): true
+    /*public function viewAny(User $user): bool
     {
-        // Qualquer usuário pode ver a lista de Vehicle
-        return true;
+        $vehicle = Vehicle::class;
+
+        // O usuário só pode ver a lista dos próprios veículos
+        return $user->id === $vehicle->user_id;
+    }*/
+    public function viewOwn(User $user, Vehicle $vehicle): bool
+    {
+        // O usuário só pode ver o veículo se ele for o criador
+        return $user->id === $vehicle->user_id;
     }
 
     public function view(User $user, Vehicle $vehicle): bool
@@ -25,7 +32,7 @@ class VehiclePolicy
     public function create(User $user): true
     {
         // Qualquer usuário autenticado pode criar um veículo
-        return true;
+        return auth()->check();
     }
 
     public function update(User $user, Vehicle $vehicle): bool

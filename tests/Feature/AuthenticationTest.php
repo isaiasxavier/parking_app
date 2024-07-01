@@ -7,43 +7,43 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
+
+use function Pest\Laravel\postJson;
 
 uses(RefreshDatabase::class);
 
-test('user can login in with correct credentials', function () {
+test('user can login in with CORRECT credentials', function () {
     $user = User::factory()->create();
 
-    $response = $this->postJson('/api/v1/auth/login', [
+    postJson('/api/v1/auth/login', [
         'email' => $user->email,
         'password' => 'password',
-    ]);
-
-    $response->assertStatus(201);
+    ])
+        ->assertStatus(201);
 
 });
 
-test('user cannot login in with wrong credentials', function () {
+test('user cannot login in with WRONG credentials', function () {
     $user = User::factory()->create();
 
-    $response = $this->postJson('/api/v1/auth/login', [
+    postJson('/api/v1/auth/login', [
         'email' => $user->email,
         'password' => 'wrong_password',
-    ]);
-
-    $response->assertStatus(422);
+    ])
+        ->assertStatus(422);
 
 });
 
-test('user can register in with the correct credentials', function () {
+test('user can register in with the CORRECT credentials', function () {
 
-    $response = $this->postJson('/api/v1/auth/register', [
+    postJson('/api/v1/auth/register', [
         'name' => 'Isaias Xavier',
         'email' => 'isaias@email.com',
         'password' => 'password',
         'password_confirmation' => 'password',
-    ]);
-
-    $response->assertStatus(201)
+    ])
+        ->assertStatus(201)
         ->assertJsonStructure([
             'access_token',
         ]);
@@ -55,18 +55,45 @@ test('user can register in with the correct credentials', function () {
 
 });
 
-test('user cannot register with incorrect credentials', function () {
-    $response = $this->postJson('/api/v1/auth/register', [
-        'name' => 'Isaias Xavier',
+test('user cannot register with WRONG credentials', function () {
+    postJson('/api/v1/auth/register', [
+        'name' => 'Isaias##Xavier', //invalid name
         'email' => 'isaias@email.com',
         'password' => 'password',
-        'password_confirmation' => 'wrong_password',
-    ]);
-
-    $response->assertStatus(422);
+        'password_confirmation' => 'password',
+    ])
+        ->assertStatus(422);
 
     $this->assertDatabaseMissing('users', [
-        'name' => 'Isaias Xavier',
+        'name' => 'Isaias$$Xavier', //invalid name
         'email' => 'isaias@email.com',
     ]);
+});
+
+it('user can logout after performed a login in', function () {
+    $user = User::factory()->create();
+    $response = postJson('/api/v1/auth/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $token = $response['access_token'];
+
+    // Logout
+    $this->withHeaders(['Authorization' => 'Bearer '.$token])
+        ->postJson('/api/v1/auth/logout')
+        ->assertStatus(204);
+});
+
+it('user cannot logout without valid authentication token', function () {
+    $token = Str::random(80);
+
+    $this->withHeaders(['Authorization' => 'Bearer '.$token])
+        ->postJson('/api/v1/auth/logout')
+        ->assertStatus(401);
+});
+
+it('should return 401 when accessing the LOGOUT page when user IS NOT AUTHENTICATED', function () {
+    postJson('/api/v1/auth/logout')
+        ->assertStatus(401);
 });

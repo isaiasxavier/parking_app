@@ -15,7 +15,7 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string', 'min:2', 'max:255', 'regex:/^[\pL\s\'\-]+$/u'], // Only allows letters, spaces, apostrophes, and hyphens
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user())],
         ];
     }

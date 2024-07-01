@@ -16,7 +16,7 @@ class VehicleFactory extends Factory
         return [
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'plate_number' => $this->faker->word(),
+            'plate_number' => strtoupper(fake()->randomLetter()).fake()->numberBetween(100, 999),
 
             'user_id' => User::factory(),
         ];
