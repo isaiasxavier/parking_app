@@ -68,7 +68,10 @@ it('should return 422 when updating NAME with NULL NAME', function () {
     $response = actingAs($user)->putJson('/api/v1/auth/profile', [
         'name' => '',
         'email' => $user->email,
-    ]);
+    ])
+        ->assertJsonValidationErrors([
+            'name' => 'The name field is required.',
+        ]);
 
     $response->assertStatus(422);
 
@@ -90,7 +93,10 @@ it('should return 422 when updating NAME with INVALID NAME', function () {
     $response = actingAs($user)->putJson('/api/v1/auth/profile', [
         'name' => 'Invalid#Name',
         'email' => $user->email,
-    ]);
+    ])
+        ->assertJsonValidationErrors([
+            'name' => 'The name field format is invalid.',
+        ]);
 
     $response->assertStatus(422);
 
@@ -140,7 +146,10 @@ it('should return 422 when updating EMAIL with NULL EMAIL', function () {
     $response = actingAs($user)->putJson('/api/v1/auth/profile', [
         'name' => $user->name,
         'email' => '',
-    ]);
+    ])
+        ->assertJsonValidationErrors([
+            'email' => 'The email field is required.',
+        ]);
 
     $response->assertStatus(422);
 
@@ -161,7 +170,10 @@ it('should return 422 when updating email with INVALID EMAIL', function () {
     $response = actingAs($user)->putJson('/api/v1/auth/profile', [
         'name' => $user->name,
         'email' => 'wrong_email',
-    ]);
+    ])
+        ->assertJsonValidationErrors([
+            'email' => 'The email field must be a valid email address.',
+        ]);
 
     $response->assertStatus(422);
 
@@ -208,7 +220,10 @@ it('should return 422 when updating password with INVALID CURRENT PASSWORD', fun
         'password' => $newPassword,
         'password_confirmation' => $newPassword,
     ])
-        ->assertStatus(422);
+        ->assertStatus(422)
+        ->assertJsonValidationErrors([
+            'current_password' => 'The password is incorrect.',
+        ]);
 
     $this->assertFalse(Hash::check($newPassword, $user->fresh()->password));
 
@@ -224,7 +239,10 @@ it('should return 422 when updating password with WRONG CONFIRMATION PASSWORD', 
         'password' => $newPassword,
         'password_confirmation' => 'wrong_password',
     ])
-        ->assertStatus(422);
+        ->assertStatus(422)
+        ->assertJsonValidationErrors([
+            'password' => 'The password field confirmation does not match.',
+        ]);
 
     $this->assertFalse(Hash::check($newPassword, $user->fresh()->password));
 

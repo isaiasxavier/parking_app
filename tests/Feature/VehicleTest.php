@@ -19,7 +19,7 @@ test('ONLY authenticated user can access VEHICLES page', function () {
         ->assertStatus(401);
 });
 
-test('user can see ONLY their own vehicles', function () {
+test('user can see ONLY their own VEHICLES', function () {
     $isaiasUser = User::factory()->create();
     $vehicleIsaias = Vehicle::factory()->create([
         'user_id' => $isaiasUser->id,
@@ -44,16 +44,20 @@ test('user can see ONLY their own vehicles', function () {
 
 });
 
-test('Only AUTHENTICATED user can register VEHICLES', function () {
+test('Only AUTHENTICATED user can REGISTER VEHICLES', function () {
     $user = User::factory()->create();
     $vehicle = Vehicle::factory()->create([
         'user_id' => $user->id,
     ]);
 
-    actingAs($user)->postJson('/api/v1/vehicles', [
+    $response = actingAs($user)->postJson('/api/v1/vehicles', [
         'user_id' => $vehicle->user_id,
         'plate_number' => $vehicle->plate_number,
-    ])
+    ]);
+
+    /*dump($response['data']);*/
+
+    $response
         ->assertStatus(201)
         ->assertJsonStructure(['data'])
         ->assertJsonCount(2, 'data')
@@ -66,10 +70,9 @@ test('Only AUTHENTICATED user can register VEHICLES', function () {
         'user_id' => $vehicle->user_id,
         'plate_number' => $vehicle->plate_number,
     ]);
-
 });
 
-test('Only AUTHENTICATED user can updated their VEHICLES ONLY', function () {
+test('Only AUTHENTICATED user can UPDATE their VEHICLES ONLY', function () {
     $user = User::factory()->create();
     $vehicle = Vehicle::factory()->create([
         'user_id' => $user->id,
@@ -94,5 +97,22 @@ test('Only AUTHENTICATED user can updated their VEHICLES ONLY', function () {
         'user_id' => $vehicle->user_id,
         'plate_number' => $oldPlate,
     ]);
+
+});
+
+test('Only AUTHENTICATED user can DELETE their VEHICLES ONLY', function () {
+    $user = User::factory()->create();
+    $vehicle = Vehicle::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    actingAs($user)->deleteJson('/api/v1/vehicles/'.$vehicle->user_id)
+        ->assertNoContent();
+
+    $this->assertDatabaseMissing('vehicles', [
+        'id' => $vehicle->id,
+        'deleted_at' => null,
+    ])
+        ->assertDatabaseCount('vehicles', 1);
 
 });
