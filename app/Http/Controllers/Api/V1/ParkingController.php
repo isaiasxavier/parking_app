@@ -16,6 +16,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * @group Parking
+ *
+ * @authenticated
+ */
 class ParkingController extends Controller
 {
     use AuthorizesRequests;

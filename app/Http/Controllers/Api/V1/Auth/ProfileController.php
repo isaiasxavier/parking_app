@@ -13,6 +13,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * @group Auth
+ *
+ * @authenticated
+ */
 class ProfileController extends Controller
 {
     /**

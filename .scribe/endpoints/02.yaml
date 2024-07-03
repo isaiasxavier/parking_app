@@ -1,0 +1,185 @@
+name: Parking
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/parkings/start
+    metadata:
+      groupName: Parking
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Inicia um estacionamento.'
+      description: |-
+        Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
+        'authorize' com a ação 'create' e a classe 'Parking'.
+
+        Este método valida os dados da solicitação usando a classe ParkingRequest.
+        Se a validação passar, ele verifica se já existe um estacionamento ativo para o veículo especificado (através
+        do 'start_time') e se a coluna 'stop_time' é nula (o que significa que o veículo ainda nao finalizou o
+        estacionamento).
+        Se existir, ele retorna uma resposta JSON com um erro.
+        Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do estacionamento.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_id:
+        name: vehicle_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      zone_id:
+        name: zone_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      vehicle_id: 9
+      zone_id: 9
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 5kP6VgfaDb4d1evahE83Z6c'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/parkings/{parking}'
+    metadata:
+      groupName: Parking
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exibe um estacionamento específico.'
+      description: |-
+        Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
+        através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
+        correspondente no banco de dados usando o ID fornecido na rota.
+
+        Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
+        Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para visualizá-lo.
+        Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
+        Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      parking:
+        name: parking
+        description: 'The parking.'
+        required: true
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      parking: 12
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: |-
+          {
+              "message": "The route api/v1/parkings/12 could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V8Dagb6PcZae6Evk15fdh4'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/parkings/{parking}'
+    metadata:
+      groupName: Parking
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Para o estacionamento.'
+      description: |-
+        Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
+        através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
+        correspondente no banco de dados usando o ID fornecido na rota.
+
+        Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
+        Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para atualizá-lo.
+        Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
+        Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é nulo).
+        Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422.
+        Se o estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e calcula o preço total.
+        Finalmente, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      parking:
+        name: parking
+        description: 'The parking.'
+        required: true
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      parking: 15
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer kDaVE8c5b6vPe6fhZ3gad41'
+    controller: null
+    method: null
+    route: null
+    custom: []

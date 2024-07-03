@@ -9,6 +9,9 @@ namespace App\Http\Requests\Api\V1\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @group Auth
+ */
 class PasswordUpdateRequest extends FormRequest
 {
     /**

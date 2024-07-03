@@ -10,6 +10,9 @@ namespace App\Http\Requests\Api\V1;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * @group Parking
+ */
 class ParkingRequest extends FormRequest
 {
     /**

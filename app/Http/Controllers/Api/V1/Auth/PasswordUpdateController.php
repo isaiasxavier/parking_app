@@ -13,6 +13,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Auth
+ *
+ * @authenticated
+ */
 class PasswordUpdateController extends Controller
 {
     /**

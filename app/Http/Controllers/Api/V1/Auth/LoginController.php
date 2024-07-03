@@ -16,9 +16,9 @@ use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 /**
- * Class LoginController
+ * @group Auth
  *
- * Esta classe é responsável por autenticar um usuário no sistema.
+ * @unauthenticated
  */
 class LoginController extends Controller
 {

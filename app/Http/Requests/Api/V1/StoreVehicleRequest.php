@@ -9,6 +9,9 @@ namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @group Vehicles
+ */
 class StoreVehicleRequest extends FormRequest
 {
     public function rules(): array

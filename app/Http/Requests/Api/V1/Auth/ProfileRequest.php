@@ -10,6 +10,9 @@ namespace App\Http\Requests\Api\V1\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * @group Auth
+ */
 class ProfileRequest extends FormRequest
 {
     public function rules(): array

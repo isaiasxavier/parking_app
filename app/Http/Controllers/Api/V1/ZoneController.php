@@ -13,6 +13,11 @@ use App\Models\Zone;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
+/**
+ * @group Zones
+ *
+ * @authenticated
+ */
 class ZoneController extends Controller
 {
     use AuthorizesRequests;

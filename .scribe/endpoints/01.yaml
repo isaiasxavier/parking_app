@@ -1,0 +1,274 @@
+name: Vehicles
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/vehicles
+    metadata:
+      groupName: Vehicles
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exibe uma lista de todos os veículos.'
+      description: |-
+        Este método usa a política 'viewAny' da classe 'VehiclePolicy' para verificar se o usuário autenticado tem
+        permissão para ver a lista de veículos.
+        Se o usuário tiver permissão, ele retorna uma coleção de todos os veículos no banco de dados, cada um
+        transformado em um 'VehicleResource'.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: |-
+          {
+              "message": "The route api/v1/vehicles could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vfDb6ka1aZ3V5gPd4e8ch6E'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/vehicles
+    metadata:
+      groupName: Vehicles
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Armazena um novo veículo no banco de dados.'
+      description: |-
+        Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
+        'authorize' com a ação 'create' e a classe 'Vehicle'. Em seguida, ele valida os dados da solicitação usando a
+        classe 'StoreVehicleRequest'.
+
+        Se os dados forem válidos, ele cria um novo veículo no banco de dados usando o método 'create' na classe
+        'Vehicle', passando os dados validados.
+        Finalmente, ele retorna uma nova instância de 'VehicleResource', passando o veículo recém-criado.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      plate_number:
+        name: plate_number
+        description: ''
+        required: true
+        example: cupiditate
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      plate_number: cupiditate
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VfDkZ6abaEh3eP6vc415g8d'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/vehicles/{id}'
+    metadata:
+      groupName: Vehicles
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exibe as informações de um veículo específico.'
+      description: |-
+        Este método primeiro verifica se o usuário autenticado tem permissão para visualizar o veículo, usando o
+        método 'authorize' com a ação 'view' e o veículo específico.
+        Se o usuário tiver permissão, ele retorna uma nova instância de 'VehicleResource', passando o veículo específico.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: |-
+          {
+              "message": "The route api/v1/vehicles/1 could not be found."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 63kPed1c6VgEfvDbZaah548'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/vehicles/{id}'
+    metadata:
+      groupName: Vehicles
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Atualiza as informações de um veículo específico.'
+      description: |-
+        Este método primeiro verifica se o usuário autenticado tem permissão para atualizar o veículo, usando o método
+        'authorize' com a ação 'update' e o veículo específico.
+        Em seguida, ele valida os dados da solicitação usando a classe 'StoreVehicleRequest'.
+        Se os dados forem válidos, ele atualiza o veículo no banco de dados usando o método 'update' na instância do
+        veículo, passando os dados validados.
+        Finalmente, ele retorna uma resposta JSON com uma nova instância de 'VehicleResource', passando o veículo
+        atualizado, e um código de status HTTP 202 (Aceito).
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      plate_number:
+        name: plate_number
+        description: ''
+        required: true
+        example: quisquam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      plate_number: quisquam
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Vd5f6aZPkbEec6v48gh1aD3'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/vehicles/{id}'
+    metadata:
+      groupName: Vehicles
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Deleta um veículo específico.'
+      description: |-
+        Este método primeiro verifica se o usuário autenticado tem permissão para deletar o veículo, usando o método
+        'authorize' com a ação 'delete' e o veículo específico.
+        Se o usuário tiver permissão, ele deleta o veículo do banco de dados usando o método 'delete' na instância do veículo.
+        Finalmente, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação foi
+        bem-sucedida e não há conteúdo para retornar.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Z31adVD5bc6kgh4eav6EPf8'
+    controller: null
+    method: null
+    route: null
+    custom: []
