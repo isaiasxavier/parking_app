@@ -5,8 +5,6 @@ This project is an API developed to manage a car parking system.
 ## Technologies Used
 
 - PHP
-- NPM
-- Composer
 - Laravel
 
 ## Project Setup
@@ -15,7 +13,6 @@ To set up the project, follow the steps below:
 
 1. Clone the repository with `git clone https://github.com/isaiasxavier/parking_app.git`
 2. Navigate to the project directory with `cd parking_app`
-3. Install the dependencies with `composer install` and `npm install`
 
 ## API Routes
 

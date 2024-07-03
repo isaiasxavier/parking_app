@@ -8,6 +8,7 @@
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\Sanctum;
 
 use function Pest\Laravel\postJson;
 
@@ -35,6 +36,19 @@ test('user cannot login in with WRONG credentials', function () {
 
 });
 
+test('user cannot login in when ALREADY AUTHENTICATED (403)', function () {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    postJson('/api/v1/auth/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ])
+        ->assertForbidden();
+
+});
+
 test('user can register in with the CORRECT credentials', function () {
 
     postJson('/api/v1/auth/register', [
@@ -52,6 +66,19 @@ test('user can register in with the CORRECT credentials', function () {
         'name' => 'Isaias Xavier',
         'email' => 'isaias@email.com',
     ]);
+
+});
+
+test('user cannot register in when ALREADY AUTHENTICATED (403)', function () {
+    $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
+
+    postJson('/api/v1/auth/register', [
+        'email' => $user->email,
+        'password' => 'password',
+    ])
+        ->assertForbidden();
 
 });
 

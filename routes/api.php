@@ -13,16 +13,14 @@ use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\ParkingController;
 use App\Http\Controllers\Api\V1\VehicleController;
 use App\Http\Controllers\Api\V1\ZoneController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', static function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
 Route::prefix('v1/auth')->group(function () {
-    Route::post('/register', RegisterController::class);
-    Route::post('/login', LoginController::class);
+
+    Route::middleware('guestSanctum')->group(function () {
+        Route::post('/register', RegisterController::class);
+        Route::post('/login', LoginController::class);
+    });
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', [ProfileController::class, 'show']);
