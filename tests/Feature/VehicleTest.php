@@ -14,12 +14,12 @@ use function Pest\Laravel\getJson;
 
 uses(RefreshDatabase::class);
 
-test('ONLY authenticated user can access VEHICLES page', function () {
+test('ONLY AUTHENTICATED user can access VEHICLES page', function () {
     getJson('/api/v1/vehicles')
         ->assertStatus(401);
 });
 
-test('user can see ONLY their own VEHICLES', function () {
+test('Only AUTHENTICATED user can see ONLY their own VEHICLES', function () {
     $isaiasUser = User::factory()->create();
     $vehicleIsaias = Vehicle::factory()->create([
         'user_id' => $isaiasUser->id,
@@ -106,13 +106,13 @@ test('Only AUTHENTICATED user can DELETE their VEHICLES ONLY', function () {
         'user_id' => $user->id,
     ]);
 
-    actingAs($user)->deleteJson('/api/v1/vehicles/'.$vehicle->user_id)
+    actingAs($user)->deleteJson('/api/v1/vehicles/'.$vehicle->id)
         ->assertNoContent();
 
     $this->assertDatabaseMissing('vehicles', [
         'id' => $vehicle->id,
         'deleted_at' => null,
     ])
-        ->assertDatabaseCount('vehicles', 1);
+        ->assertSoftDeleted('vehicles', ['id' => $vehicle->id]);
 
 });
