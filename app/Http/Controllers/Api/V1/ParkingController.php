@@ -14,6 +14,7 @@ use App\Models\Parking;
 use App\Services\Api\V1\ParkingPriceService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 /**
@@ -133,14 +134,24 @@ class ParkingController extends Controller
         return new ParkingResource($parking);
     }
 
-    /*public function index(): AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Parking::class);
 
-        return ParkingResource::collection(Parking::all());
+        $parkings = Parking::with(['zone', 'vehicle'])->get()->map(function ($parking) {
+            if ($parking->stop_time === null) {
+                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time);
+            } else {
+                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time, $parking->stop_time);
+            }
+
+            return $parking;
+        });
+
+        return ParkingResource::collection($parkings);
     }
 
-    public function store(ParkingRequest $request): ParkingResource
+    /*public function store(ParkingRequest $request): ParkingResource
     {
         $this->authorize('create', Parking::class);
 

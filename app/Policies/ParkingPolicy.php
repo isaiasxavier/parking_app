@@ -10,10 +10,12 @@ class ParkingPolicy
 {
     use HandlesAuthorization;
 
-    /*public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
-        //
-    }*/
+        // Lógica para determinar se o usuário pode visualizar qualquer instância de Parking
+        // Por exemplo, retornar true se o usuário estiver autenticado
+        return auth()->check();
+    }
 
     public function view(User $user, Parking $parking): bool
     {
