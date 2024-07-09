@@ -21,11 +21,13 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class ProfileController extends Controller
 {
     /**
-     * Exibe as informações do perfil do usuário autenticado.
+     * Display the user's profile information.
      *
-     * @return JsonResponse
+     * This method retrieves the authenticated user's profile information, including their name and email.
+     * It ensures that the user is authenticated before providing access to their profile data.
      *
-     * Este método retorna um JSON com os campos 'name' e 'email' do usuário autenticado.
+     * @param  Request  $request  The request instance containing the user's authentication data.
+     * @return JsonResponse Returns a JSON response containing the user's name and email.
      */
     public function show(Request $request): JsonResponse
     {
@@ -33,12 +35,13 @@ class ProfileController extends Controller
     }
 
     /**
-     * Atualiza as informações do perfil do usuário autenticado.
+     * Update the user's profile information.
      *
-     * @return JsonResponse
+     * This method processes a ProfileRequest to validate the input data and updates the authenticated user's profile information.
+     * It ensures that the user is authenticated and has the right to update their profile data.
      *
-     * Este método valida os dados recebidos através do objeto ProfileRequest, atualiza as informações do usuário autenticado
-     * e retorna um JSON com os dados validados e um código de status HTTP 202 (Aceito).
+     * @param  ProfileRequest  $request  The request object containing the validated input data for the profile update.
+     * @return JsonResponse Returns a JSON response with the updated profile data and an HTTP 202 Accepted status code.
      */
     public function update(ProfileRequest $request): JsonResponse
     {

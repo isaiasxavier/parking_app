@@ -9,24 +9,15 @@ class ZonePolicy
 {
     use HandlesAuthorization;
 
+    /**
+     * Determine whether any user can view any zones.
+     *
+     * @param  User|null  $user  The user attempting the action.
+     * @return bool True if the action is allowed, otherwise false.
+     */
     public function viewAny(?User $user): bool
     {
-        /*// Apenas usuários autenticados podem ver a lista de Zone
-        return auth()->check();*/
-
-        //Qualquer usuário pode ver as ZONE
+        // Assuming all users can view any zone
         return true;
     }
-
-    /*public function view(User $user, Zone $zone) {}
-
-    public function create(User $user) {}
-
-    public function update(User $user, Zone $zone) {}
-
-    public function delete(User $user, Zone $zone) {}
-
-    public function restore(User $user, Zone $zone) {}
-
-    public function forceDelete(User $user, Zone $zone) {}*/
 }

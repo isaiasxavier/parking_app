@@ -21,16 +21,15 @@ use Symfony\Component\HttpFoundation\Response;
 class PasswordUpdateController extends Controller
 {
     /**
-     * Atualiza a senha do usuário autenticado.
+     * Update the authenticated user's password.
      *
-     * Este método recebe um objeto PasswordUpdateRequest que valida os dados de entrada.
-     * Primeiro, ele verifica se a nova senha é a mesma que a senha atual. Se for, ele retorna uma resposta JSON com
-     * uma mensagem de erro e um código de status HTTP 422 (Entidade Não Processável).
-     * Se a nova senha for diferente da senha atual, ele atualiza a senha do usuário no banco de dados e retorna uma
-     * resposta JSON com uma mensagem de sucesso e um código de status HTTP 202 (Aceito).
+     * This method processes a PasswordUpdateRequest to validate the input data. It first checks if the new password
+     * matches the current password. If so, it returns a JSON response with an error message and a HTTP 422 Unprocessable
+     * Entity status code. If the new password is different from the current password, it updates the user's password in the
+     * database and returns a JSON response with a success message and a HTTP 202 Accepted status code.
      *
-     * @param  PasswordUpdateRequest  $request  O objeto de solicitação que contém os dados de entrada validados.
-     * @return JsonResponse Uma resposta JSON que contém uma mensagem e um código de status HTTP.
+     * @param  PasswordUpdateRequest  $request  The request object containing the validated input data.
+     * @return JsonResponse A JSON response containing a message and an HTTP status code.
      */
     public function __invoke(PasswordUpdateRequest $request)
     {

@@ -10,8 +10,11 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Register a new user.'
+      description: |-
+        This method processes a UserRequest to validate the input data and creates a new user in the database.
+        It hashes the user's password for security, registers the user, and generates an access token for immediate use.
+        The method also logs the device used during registration for potential future security checks.
       authenticated: false
       custom: []
     headers:
@@ -26,7 +29,7 @@ endpoints:
         name: name
         description: 'Must match the regex /^[\pL\s''\-]+$/u. Must not be greater than 255 characters.'
         required: true
-        example: nyapqjpwzkzuh
+        example: iybsejqzwndwzc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -35,7 +38,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
-        example: bruen.kelvin@example.com
+        example: sporer.felipa@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -44,15 +47,15 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: occaecati
+        example: ab
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: nyapqjpwzkzuh
-      email: bruen.kelvin@example.com
-      password: occaecati
+      name: iybsejqzwndwzc
+      email: sporer.felipa@example.org
+      password: ab
     fileParameters: []
     responses: []
     responseFields: []
@@ -70,8 +73,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Authenticate a user.'
+      description: |-
+        This method authenticates a user by their email and password. If the credentials are correct,
+        it generates an access token for the user. The token's expiration can be extended if the 'remember' option is selected.
       authenticated: false
       custom: []
     headers:
@@ -86,7 +91,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address. Must not be greater than 254 characters.'
         required: true
-        example: lora.kautzer@example.com
+        example: xavier.marks@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -95,14 +100,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: omnis
+        example: sed
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: lora.kautzer@example.com
-      password: omnis
+      email: xavier.marks@example.org
+      password: sed
     fileParameters: []
     responses: []
     responseFields: []
@@ -120,8 +125,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Exibe as informações do perfil do usuário autenticado.'
-      description: ''
+      title: "Display the user's profile information."
+      description: |-
+        This method retrieves the authenticated user's profile information, including their name and email.
+        It ensures that the user is authenticated before providing access to their profile data.
       authenticated: true
       custom: []
     headers:
@@ -152,7 +159,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 5hZ3fPvaeb6aV4cdD61gkE8'
+      - 'Bearer E8veV36ga6kf4PdaDb1hc5Z'
     controller: null
     method: null
     route: null
@@ -166,8 +173,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Atualiza as informações do perfil do usuário autenticado.'
-      description: ''
+      title: "Update the user's profile information."
+      description: |-
+        This method processes a ProfileRequest to validate the input data and updates the authenticated user's profile information.
+        It ensures that the user is authenticated and has the right to update their profile data.
       authenticated: true
       custom: []
     headers:
@@ -183,7 +192,7 @@ endpoints:
         name: name
         description: 'Must match the regex /^[\pL\s''\-]+$/u. Must be at least 2 characters. Must not be greater than 255 characters.'
         required: true
-        example: bvf
+        example: vwpxpwtkcwzyad
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -192,21 +201,21 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: tbrekke@example.org
+        example: keven.collins@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: bvf
-      email: tbrekke@example.org
+      name: vwpxpwtkcwzyad
+      email: keven.collins@example.com
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer a4h8VgdcZ3v5aD166efbPkE'
+      - 'Bearer ga8366cdaEVhZfvk54bDP1e'
     controller: null
     method: null
     route: null
@@ -220,13 +229,12 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Atualiza a senha do usuário autenticado.'
+      title: "Update the authenticated user's password."
       description: |-
-        Este método recebe um objeto PasswordUpdateRequest que valida os dados de entrada.
-        Primeiro, ele verifica se a nova senha é a mesma que a senha atual. Se for, ele retorna uma resposta JSON com
-        uma mensagem de erro e um código de status HTTP 422 (Entidade Não Processável).
-        Se a nova senha for diferente da senha atual, ele atualiza a senha do usuário no banco de dados e retorna uma
-        resposta JSON com uma mensagem de sucesso e um código de status HTTP 202 (Aceito).
+        This method processes a PasswordUpdateRequest to validate the input data. It first checks if the new password
+        matches the current password. If so, it returns a JSON response with an error message and a HTTP 422 Unprocessable
+        Entity status code. If the new password is different from the current password, it updates the user's password in the
+        database and returns a JSON response with a success message and a HTTP 202 Accepted status code.
       authenticated: true
       custom: []
     headers:
@@ -242,7 +250,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: suscipit
+        example: laboriosam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -251,21 +259,21 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: a
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      current_password: suscipit
-      password: a
+      current_password: laboriosam
+      password: est
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer gh43e18baE66caVfdZDvkP5'
+      - 'Bearer c18gP3hbfdvak4D5e66ZEVa'
     controller: null
     method: null
     route: null
@@ -279,11 +287,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Realiza o logout do usuário autenticado.'
+      title: 'Log out the authenticated user.'
       description: |-
-        Este método obtém o usuário autenticado através do helper 'auth()', e então deleta o token de acesso atual.
-        Após a deleção do token, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação
-        foi bem-sucedida e não há conteúdo para retornar.
+        This method deletes the current access token for the authenticated user, effectively logging them out.
+        It returns a no-content response, indicating the operation was successful.
       authenticated: true
       custom: []
     headers:
@@ -302,7 +309,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer aPfv5D4ach6eE16VZd8g3bk'
+      - 'Bearer EDZ6ac813vgkehab5fPV46d'
     controller: null
     method: null
     route: null

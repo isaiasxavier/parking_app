@@ -12,17 +12,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Método para listar todas as zonas.'
-      description: |-
-        Este método é responsável por retornar uma coleção de todas as zonas
-        existentes no banco de dados. Ele primeiro autoriza a ação 'viewAny' para
-        a classe Zone, o que significa que qualquer usuário, autenticado ou não,
-        tem permissão para ver a lista de zonas.
-
-        Após a autorização, ele recupera todas as zonas do banco de dados usando
-        o método 'all' na classe 'Zone'. Em seguida, ele retorna essas zonas como
-        uma coleção de recursos 'ZoneResource', que transforma cada instância de
-        'Zone' em um array formatado para a resposta da API.
+      title: 'List all zones.'
+      description: 'This method retrieves all zone instances. It ensures that the user has the permission to view any zone.'
       authenticated: true
       custom: []
     headers:
@@ -53,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer DkZeEhca8f1b4Vd63vg56aP'
+      - 'Bearer 6kvfaeZDEc1gb3Vd854a6hP'
     controller: null
     method: null
     route: null

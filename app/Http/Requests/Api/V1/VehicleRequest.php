@@ -14,6 +14,18 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class VehicleRequest extends FormRequest
 {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * This method defines the validation rules for vehicle operations. It ensures that:
+     * - `user_id` is required and must exist in the `users` table.
+     * - `plate_number` is required.
+     *
+     * These rules help in maintaining the integrity of the vehicle data by ensuring that only valid and authorized
+     * data is processed.
+     *
+     * @return array An array of validation rules.
+     */
     public function rules(): array
     {
         return [

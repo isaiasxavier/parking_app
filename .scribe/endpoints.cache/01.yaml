@@ -12,12 +12,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Exibe uma lista de todos os veículos.'
+      title: 'List all vehicles for the authenticated user.'
       description: |-
-        Este método usa a política 'viewAny' da classe 'VehiclePolicy' para verificar se o usuário autenticado tem
-        permissão para ver a lista de veículos.
-        Se o usuário tiver permissão, ele retorna uma coleção de todos os veículos no banco de dados, cada um
-        transformado em um 'VehicleResource'.
+        This method retrieves all vehicle instances associated with the authenticated user's ID.
+        It ensures that the user has the permission to view their own vehicles.
       authenticated: true
       custom: []
     headers:
@@ -48,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vfDb6ka1aZ3V5gPd4e8ch6E'
+      - 'Bearer vD3eVZ8bE4da6gf5Pkah6c1'
     controller: null
     method: null
     route: null
@@ -62,15 +60,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Armazena um novo veículo no banco de dados.'
+      title: 'Store a new vehicle.'
       description: |-
-        Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
-        'authorize' com a ação 'create' e a classe 'Vehicle'. Em seguida, ele valida os dados da solicitação usando a
-        classe 'StoreVehicleRequest'.
-
-        Se os dados forem válidos, ele cria um novo veículo no banco de dados usando o método 'create' na classe
-        'Vehicle', passando os dados validados.
-        Finalmente, ele retorna uma nova instância de 'VehicleResource', passando o veículo recém-criado.
+        Validates the incoming request and creates a new vehicle instance for the authenticated user.
+        It ensures that the user has the permission to create a new vehicle.
       authenticated: true
       custom: []
     headers:
@@ -86,20 +79,20 @@ endpoints:
         name: plate_number
         description: ''
         required: true
-        example: cupiditate
+        example: reprehenderit
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      plate_number: cupiditate
+      plate_number: reprehenderit
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer VfDkZ6abaEh3eP6vc415g8d'
+      - 'Bearer Pbgce4kfhva3EaDV86Z6d15'
     controller: null
     method: null
     route: null
@@ -113,11 +106,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Exibe as informações de um veículo específico.'
-      description: |-
-        Este método primeiro verifica se o usuário autenticado tem permissão para visualizar o veículo, usando o
-        método 'authorize' com a ação 'view' e o veículo específico.
-        Se o usuário tiver permissão, ele retorna uma nova instância de 'VehicleResource', passando o veículo específico.
+      title: 'Display the specified vehicle.'
+      description: 'Retrieves and returns information about a specific vehicle, ensuring that the user has permission to view it.'
       authenticated: true
       custom: []
     headers:
@@ -158,7 +148,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 63kPed1c6VgEfvDbZaah548'
+      - 'Bearer 84k3Zdca6vPa1DbefEVg65h'
     controller: null
     method: null
     route: null
@@ -173,15 +163,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Atualiza as informações de um veículo específico.'
+      title: 'Update the specified vehicle.'
       description: |-
-        Este método primeiro verifica se o usuário autenticado tem permissão para atualizar o veículo, usando o método
-        'authorize' com a ação 'update' e o veículo específico.
-        Em seguida, ele valida os dados da solicitação usando a classe 'StoreVehicleRequest'.
-        Se os dados forem válidos, ele atualiza o veículo no banco de dados usando o método 'update' na instância do
-        veículo, passando os dados validados.
-        Finalmente, ele retorna uma resposta JSON com uma nova instância de 'VehicleResource', passando o veículo
-        atualizado, e um código de status HTTP 202 (Aceito).
+        Validates the incoming request and updates the specified vehicle instance.
+        It ensures that the user has the permission to update the vehicle.
       authenticated: true
       custom: []
     headers:
@@ -207,20 +192,20 @@ endpoints:
         name: plate_number
         description: ''
         required: true
-        example: quisquam
+        example: eaque
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      plate_number: quisquam
+      plate_number: eaque
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Vd5f6aZPkbEec6v48gh1aD3'
+      - 'Bearer gvc3Vea6fPEDh65ad1bZ84k'
     controller: null
     method: null
     route: null
@@ -234,13 +219,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Deleta um veículo específico.'
+      title: 'Remove the specified vehicle.'
       description: |-
-        Este método primeiro verifica se o usuário autenticado tem permissão para deletar o veículo, usando o método
-        'authorize' com a ação 'delete' e o veículo específico.
-        Se o usuário tiver permissão, ele deleta o veículo do banco de dados usando o método 'delete' na instância do veículo.
-        Finalmente, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação foi
-        bem-sucedida e não há conteúdo para retornar.
+        Deletes the specified vehicle instance, ensuring that the user has permission to delete it.
+        Returns a no-content response on successful deletion.
       authenticated: true
       custom: []
     headers:
@@ -269,7 +251,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Z31adVD5bc6kgh4eav6EPf8'
+      - 'Bearer Ea3e86bPv6c4hgVdkaDZ5f1'
     controller: null
     method: null
     route: null

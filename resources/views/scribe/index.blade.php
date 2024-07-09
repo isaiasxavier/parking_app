@@ -72,22 +72,22 @@
                 </li>
                                     <ul id="tocify-subheader-auth" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-register">
-                                <a href="#auth-POSTapi-v1-auth-register">POST api/v1/auth/register</a>
+                                <a href="#auth-POSTapi-v1-auth-register">Register a new user.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-login">
-                                <a href="#auth-POSTapi-v1-auth-login">POST api/v1/auth/login</a>
+                                <a href="#auth-POSTapi-v1-auth-login">Authenticate a user.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-GETapi-v1-auth-profile">
-                                <a href="#auth-GETapi-v1-auth-profile">Exibe as informações do perfil do usuário autenticado.</a>
+                                <a href="#auth-GETapi-v1-auth-profile">Display the user's profile information.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-PUTapi-v1-auth-profile">
-                                <a href="#auth-PUTapi-v1-auth-profile">Atualiza as informações do perfil do usuário autenticado.</a>
+                                <a href="#auth-PUTapi-v1-auth-profile">Update the user's profile information.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-PUTapi-v1-auth-password">
-                                <a href="#auth-PUTapi-v1-auth-password">Atualiza a senha do usuário autenticado.</a>
+                                <a href="#auth-PUTapi-v1-auth-password">Update the authenticated user's password.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-logout">
-                                <a href="#auth-POSTapi-v1-auth-logout">Realiza o logout do usuário autenticado.</a>
+                                <a href="#auth-POSTapi-v1-auth-logout">Log out the authenticated user.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -96,14 +96,20 @@
                     <a href="#parking">Parking</a>
                 </li>
                                     <ul id="tocify-subheader-parking" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="parking-POSTapi-v1-parkings-start">
-                                <a href="#parking-POSTapi-v1-parkings-start">Inicia um estacionamento.</a>
+                                                    <li class="tocify-item level-2" data-unique="parking-GETapi-v1-parkings">
+                                <a href="#parking-GETapi-v1-parkings">List all parkings.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="parking-GETapi-v1-parkings-history">
+                                <a href="#parking-GETapi-v1-parkings-history">List all stopped parkings.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="parking-POSTapi-v1-parkings-start">
+                                <a href="#parking-POSTapi-v1-parkings-start">Start a new parking session.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="parking-GETapi-v1-parkings--parking-">
-                                <a href="#parking-GETapi-v1-parkings--parking-">Exibe um estacionamento específico.</a>
+                                <a href="#parking-GETapi-v1-parkings--parking-">Display a specific parking session.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="parking-PUTapi-v1-parkings--parking-">
-                                <a href="#parking-PUTapi-v1-parkings--parking-">Para o estacionamento.</a>
+                                <a href="#parking-PUTapi-v1-parkings--parking-">Stop an active parking session.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -113,19 +119,19 @@
                 </li>
                                     <ul id="tocify-subheader-vehicles" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="vehicles-GETapi-v1-vehicles">
-                                <a href="#vehicles-GETapi-v1-vehicles">Exibe uma lista de todos os veículos.</a>
+                                <a href="#vehicles-GETapi-v1-vehicles">List all vehicles for the authenticated user.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="vehicles-POSTapi-v1-vehicles">
-                                <a href="#vehicles-POSTapi-v1-vehicles">Armazena um novo veículo no banco de dados.</a>
+                                <a href="#vehicles-POSTapi-v1-vehicles">Store a new vehicle.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="vehicles-GETapi-v1-vehicles--id-">
-                                <a href="#vehicles-GETapi-v1-vehicles--id-">Exibe as informações de um veículo específico.</a>
+                                <a href="#vehicles-GETapi-v1-vehicles--id-">Display the specified vehicle.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="vehicles-PUTapi-v1-vehicles--id-">
-                                <a href="#vehicles-PUTapi-v1-vehicles--id-">Atualiza as informações de um veículo específico.</a>
+                                <a href="#vehicles-PUTapi-v1-vehicles--id-">Update the specified vehicle.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="vehicles-DELETEapi-v1-vehicles--id-">
-                                <a href="#vehicles-DELETEapi-v1-vehicles--id-">Deleta um veículo específico.</a>
+                                <a href="#vehicles-DELETEapi-v1-vehicles--id-">Remove the specified vehicle.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -135,7 +141,7 @@
                 </li>
                                     <ul id="tocify-subheader-zones" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="zones-GETapi-v1-zones">
-                                <a href="#zones-GETapi-v1-zones">Método para listar todas as zonas.</a>
+                                <a href="#zones-GETapi-v1-zones">List all zones.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -148,7 +154,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 3, 2024</li>
+        <li>Last updated: July 9, 2024</li>
     </ul>
 </div>
 
@@ -173,12 +179,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="auth-POSTapi-v1-auth-register">POST api/v1/auth/register</h2>
+                                <h2 id="auth-POSTapi-v1-auth-register">Register a new user.</h2>
 
 <p>
 </p>
 
-
+<p>This method processes a UserRequest to validate the input data and creates a new user in the database.
+It hashes the user's password for security, registers the user, and generates an access token for immediate use.
+The method also logs the device used during registration for potential future security checks.</p>
 
 <span id="example-requests-POSTapi-v1-auth-register">
 <blockquote>Example request:</blockquote>
@@ -195,9 +203,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'nyapqjpwzkzuh',
-            'email' =&gt; 'bruen.kelvin@example.com',
-            'password' =&gt; 'occaecati',
+            'name' =&gt; 'iybsejqzwndwzc',
+            'email' =&gt; 'sporer.felipa@example.org',
+            'password' =&gt; 'ab',
         ],
     ]
 );
@@ -216,9 +224,9 @@ const headers = {
 };
 
 let body = {
-    "name": "nyapqjpwzkzuh",
-    "email": "bruen.kelvin@example.com",
-    "password": "occaecati"
+    "name": "iybsejqzwndwzc",
+    "email": "sporer.felipa@example.org",
+    "password": "ab"
 };
 
 fetch(url, {
@@ -307,10 +315,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-auth-register"
-               value="nyapqjpwzkzuh"
+               value="iybsejqzwndwzc"
                data-component="body">
     <br>
-<p>Must match the regex /^[\pL\s'-]+$/u. Must not be greater than 255 characters. Example: <code>nyapqjpwzkzuh</code></p>
+<p>Must match the regex /^[\pL\s'-]+$/u. Must not be greater than 255 characters. Example: <code>iybsejqzwndwzc</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -318,10 +326,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-register"
-               value="bruen.kelvin@example.com"
+               value="sporer.felipa@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>bruen.kelvin@example.com</code></p>
+<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>sporer.felipa@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -329,19 +337,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-register"
-               value="occaecati"
+               value="ab"
                data-component="body">
     <br>
-<p>Example: <code>occaecati</code></p>
+<p>Example: <code>ab</code></p>
         </div>
         </form>
 
-                    <h2 id="auth-POSTapi-v1-auth-login">POST api/v1/auth/login</h2>
+                    <h2 id="auth-POSTapi-v1-auth-login">Authenticate a user.</h2>
 
 <p>
 </p>
 
-
+<p>This method authenticates a user by their email and password. If the credentials are correct,
+it generates an access token for the user. The token's expiration can be extended if the 'remember' option is selected.</p>
 
 <span id="example-requests-POSTapi-v1-auth-login">
 <blockquote>Example request:</blockquote>
@@ -358,8 +367,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'lora.kautzer@example.com',
-            'password' =&gt; 'omnis',
+            'email' =&gt; 'xavier.marks@example.org',
+            'password' =&gt; 'sed',
         ],
     ]
 );
@@ -378,8 +387,8 @@ const headers = {
 };
 
 let body = {
-    "email": "lora.kautzer@example.com",
-    "password": "omnis"
+    "email": "xavier.marks@example.org",
+    "password": "sed"
 };
 
 fetch(url, {
@@ -468,10 +477,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-login"
-               value="lora.kautzer@example.com"
+               value="xavier.marks@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 254 characters. Example: <code>lora.kautzer@example.com</code></p>
+<p>Must be a valid email address. Must not be greater than 254 characters. Example: <code>xavier.marks@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -479,20 +488,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-login"
-               value="omnis"
+               value="sed"
                data-component="body">
     <br>
-<p>Example: <code>omnis</code></p>
+<p>Example: <code>sed</code></p>
         </div>
         </form>
 
-                    <h2 id="auth-GETapi-v1-auth-profile">Exibe as informações do perfil do usuário autenticado.</h2>
+                    <h2 id="auth-GETapi-v1-auth-profile">Display the user&#039;s profile information.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>This method retrieves the authenticated user's profile information, including their name and email.
+It ensures that the user is authenticated before providing access to their profile data.</p>
 
 <span id="example-requests-GETapi-v1-auth-profile">
 <blockquote>Example request:</blockquote>
@@ -633,13 +643,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="auth-PUTapi-v1-auth-profile">Atualiza as informações do perfil do usuário autenticado.</h2>
+                    <h2 id="auth-PUTapi-v1-auth-profile">Update the user&#039;s profile information.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>This method processes a ProfileRequest to validate the input data and updates the authenticated user's profile information.
+It ensures that the user is authenticated and has the right to update their profile data.</p>
 
 <span id="example-requests-PUTapi-v1-auth-profile">
 <blockquote>Example request:</blockquote>
@@ -657,8 +668,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'bvf',
-            'email' =&gt; 'tbrekke@example.org',
+            'name' =&gt; 'vwpxpwtkcwzyad',
+            'email' =&gt; 'keven.collins@example.com',
         ],
     ]
 );
@@ -678,8 +689,8 @@ const headers = {
 };
 
 let body = {
-    "name": "bvf",
-    "email": "tbrekke@example.org"
+    "name": "vwpxpwtkcwzyad",
+    "email": "keven.collins@example.com"
 };
 
 fetch(url, {
@@ -779,10 +790,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-auth-profile"
-               value="bvf"
+               value="vwpxpwtkcwzyad"
                data-component="body">
     <br>
-<p>Must match the regex /^[\pL\s'-]+$/u. Must be at least 2 characters. Must not be greater than 255 characters. Example: <code>bvf</code></p>
+<p>Must match the regex /^[\pL\s'-]+$/u. Must be at least 2 characters. Must not be greater than 255 characters. Example: <code>vwpxpwtkcwzyad</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -790,24 +801,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-auth-profile"
-               value="tbrekke@example.org"
+               value="keven.collins@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>tbrekke@example.org</code></p>
+<p>Must be a valid email address. Example: <code>keven.collins@example.com</code></p>
         </div>
         </form>
 
-                    <h2 id="auth-PUTapi-v1-auth-password">Atualiza a senha do usuário autenticado.</h2>
+                    <h2 id="auth-PUTapi-v1-auth-password">Update the authenticated user&#039;s password.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método recebe um objeto PasswordUpdateRequest que valida os dados de entrada.
-Primeiro, ele verifica se a nova senha é a mesma que a senha atual. Se for, ele retorna uma resposta JSON com
-uma mensagem de erro e um código de status HTTP 422 (Entidade Não Processável).
-Se a nova senha for diferente da senha atual, ele atualiza a senha do usuário no banco de dados e retorna uma
-resposta JSON com uma mensagem de sucesso e um código de status HTTP 202 (Aceito).</p>
+<p>This method processes a PasswordUpdateRequest to validate the input data. It first checks if the new password
+matches the current password. If so, it returns a JSON response with an error message and a HTTP 422 Unprocessable
+Entity status code. If the new password is different from the current password, it updates the user's password in the
+database and returns a JSON response with a success message and a HTTP 202 Accepted status code.</p>
 
 <span id="example-requests-PUTapi-v1-auth-password">
 <blockquote>Example request:</blockquote>
@@ -825,8 +835,8 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'current_password' =&gt; 'suscipit',
-            'password' =&gt; 'a',
+            'current_password' =&gt; 'laboriosam',
+            'password' =&gt; 'est',
         ],
     ]
 );
@@ -846,8 +856,8 @@ const headers = {
 };
 
 let body = {
-    "current_password": "suscipit",
-    "password": "a"
+    "current_password": "laboriosam",
+    "password": "est"
 };
 
 fetch(url, {
@@ -947,10 +957,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="current_password"                data-endpoint="PUTapi-v1-auth-password"
-               value="suscipit"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>Example: <code>suscipit</code></p>
+<p>Example: <code>laboriosam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -958,22 +968,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-auth-password"
-               value="a"
+               value="est"
                data-component="body">
     <br>
-<p>Example: <code>a</code></p>
+<p>Example: <code>est</code></p>
         </div>
         </form>
 
-                    <h2 id="auth-POSTapi-v1-auth-logout">Realiza o logout do usuário autenticado.</h2>
+                    <h2 id="auth-POSTapi-v1-auth-logout">Log out the authenticated user.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método obtém o usuário autenticado através do helper 'auth()', e então deleta o token de acesso atual.
-Após a deleção do token, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação
-foi bem-sucedida e não há conteúdo para retornar.</p>
+<p>This method deletes the current access token for the authenticated user, effectively logging them out.
+It returns a no-content response, indicating the operation was successful.</p>
 
 <span id="example-requests-POSTapi-v1-auth-logout">
 <blockquote>Example request:</blockquote>
@@ -1102,20 +1111,310 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="parking-POSTapi-v1-parkings-start">Inicia um estacionamento.</h2>
+                                <h2 id="parking-GETapi-v1-parkings">List all parkings.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
-'authorize' com a ação 'create' e a classe 'Parking'.</p>
-<p>Este método valida os dados da solicitação usando a classe ParkingRequest.
-Se a validação passar, ele verifica se já existe um estacionamento ativo para o veículo especificado (através
-do 'start_time') e se a coluna 'stop_time' é nula (o que significa que o veículo ainda nao finalizou o
-estacionamento).
-Se existir, ele retorna uma resposta JSON com um erro.
-Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do estacionamento.</p>
+<p>This method retrieves all parking instances, including their related zone and vehicle information.
+It also calculates the total price for each parking session that is still active.</p>
+
+<span id="example-requests-GETapi-v1-parkings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://parking_app.test/api/v1/parkings';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://parking_app.test/api/v1/parkings"
+);
+
+const headers = {
+    "Authorization": "Bearer {TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-parkings">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The route api/v1/parkings could not be found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-parkings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-parkings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-parkings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-parkings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-parkings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-parkings" data-method="GET"
+      data-path="api/v1/parkings"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-parkings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-parkings"
+                    onclick="tryItOut('GETapi-v1-parkings');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-parkings"
+                    onclick="cancelTryOut('GETapi-v1-parkings');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-parkings"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/parkings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-parkings"
+               value="Bearer {TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-parkings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-parkings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="parking-GETapi-v1-parkings-history">List all stopped parkings.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retrieves all parking sessions, including their related zone and vehicle information, regardless of their status.
+This method is similar to index but does not filter by active sessions.</p>
+
+<span id="example-requests-GETapi-v1-parkings-history">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://parking_app.test/api/v1/parkings/history';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {TOKEN}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://parking_app.test/api/v1/parkings/history"
+);
+
+const headers = {
+    "Authorization": "Bearer {TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-parkings-history">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The route api/v1/parkings/history could not be found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-parkings-history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-parkings-history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-parkings-history"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-parkings-history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-parkings-history">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-parkings-history" data-method="GET"
+      data-path="api/v1/parkings/history"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-parkings-history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-parkings-history"
+                    onclick="tryItOut('GETapi-v1-parkings-history');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-parkings-history"
+                    onclick="cancelTryOut('GETapi-v1-parkings-history');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-parkings-history"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/parkings/history</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-parkings-history"
+               value="Bearer {TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-parkings-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-parkings-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="parking-POSTapi-v1-parkings-start">Start a new parking session.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Validates the incoming request and creates a new parking session if the vehicle is not already in an active session.
+It loads the related vehicle and zone information for the newly created parking session.</p>
 
 <span id="example-requests-POSTapi-v1-parkings-start">
 <blockquote>Example request:</blockquote>
@@ -1133,8 +1432,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'vehicle_id' =&gt; 9,
-            'zone_id' =&gt; 9,
+            'vehicle_id' =&gt; 5,
+            'zone_id' =&gt; 7,
         ],
     ]
 );
@@ -1154,8 +1453,8 @@ const headers = {
 };
 
 let body = {
-    "vehicle_id": 9,
-    "zone_id": 9
+    "vehicle_id": 5,
+    "zone_id": 7
 };
 
 fetch(url, {
@@ -1255,10 +1554,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="vehicle_id"                data-endpoint="POSTapi-v1-parkings-start"
-               value="9"
+               value="5"
                data-component="body">
     <br>
-<p>Example: <code>9</code></p>
+<p>Example: <code>5</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
@@ -1266,26 +1565,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="zone_id"                data-endpoint="POSTapi-v1-parkings-start"
-               value="9"
+               value="7"
                data-component="body">
     <br>
-<p>Example: <code>9</code></p>
+<p>Example: <code>7</code></p>
         </div>
         </form>
 
-                    <h2 id="parking-GETapi-v1-parkings--parking-">Exibe um estacionamento específico.</h2>
+                    <h2 id="parking-GETapi-v1-parkings--parking-">Display a specific parking session.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
-através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
-correspondente no banco de dados usando o ID fornecido na rota.</p>
-<p>Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
-Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para visualizá-lo.
-Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.</p>
+<p>Retrieves and returns information about a specific parking session, including related zone and vehicle information,
+if the session exists and the user has permission to view it.</p>
 
 <span id="example-requests-GETapi-v1-parkings--parking-">
 <blockquote>Example request:</blockquote>
@@ -1293,7 +1587,7 @@ Se o usuário tiver permissão, o método retorna uma instância de ParkingResou
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://parking_app.test/api/v1/parkings/12';
+$url = 'http://parking_app.test/api/v1/parkings/2';
 $response = $client-&gt;get(
     $url,
     [
@@ -1310,7 +1604,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://parking_app.test/api/v1/parkings/12"
+    "http://parking_app.test/api/v1/parkings/2"
 );
 
 const headers = {
@@ -1340,7 +1634,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;The route api/v1/parkings/12 could not be found.&quot;
+    &quot;message&quot;: &quot;The route api/v1/parkings/2 could not be found.&quot;
 }</code>
  </pre>
     </span>
@@ -1431,29 +1725,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="parking"                data-endpoint="GETapi-v1-parkings--parking-"
-               value="12"
+               value="2"
                data-component="url">
     <br>
-<p>The parking. Example: <code>12</code></p>
+<p>The parking. Example: <code>2</code></p>
             </div>
                     </form>
 
-                    <h2 id="parking-PUTapi-v1-parkings--parking-">Para o estacionamento.</h2>
+                    <h2 id="parking-PUTapi-v1-parkings--parking-">Stop an active parking session.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
-através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
-correspondente no banco de dados usando o ID fornecido na rota.</p>
-<p>Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
-Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para atualizá-lo.
-Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é nulo).
-Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422.
-Se o estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e calcula o preço total.
-Finalmente, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.</p>
+<p>Finds an active parking session by ID and stops it by setting the stop time and calculating the total price.
+It checks if the session exists and if it has not already been stopped.</p>
 
 <span id="example-requests-PUTapi-v1-parkings--parking-">
 <blockquote>Example request:</blockquote>
@@ -1461,7 +1747,7 @@ Finalmente, o método retorna uma instância de ParkingResource, que é uma repr
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://parking_app.test/api/v1/parkings/15';
+$url = 'http://parking_app.test/api/v1/parkings/12';
 $response = $client-&gt;put(
     $url,
     [
@@ -1478,7 +1764,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://parking_app.test/api/v1/parkings/15"
+    "http://parking_app.test/api/v1/parkings/12"
 );
 
 const headers = {
@@ -1583,10 +1869,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="parking"                data-endpoint="PUTapi-v1-parkings--parking-"
-               value="15"
+               value="12"
                data-component="url">
     <br>
-<p>The parking. Example: <code>15</code></p>
+<p>The parking. Example: <code>12</code></p>
             </div>
                     </form>
 
@@ -1594,16 +1880,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="vehicles-GETapi-v1-vehicles">Exibe uma lista de todos os veículos.</h2>
+                                <h2 id="vehicles-GETapi-v1-vehicles">List all vehicles for the authenticated user.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método usa a política 'viewAny' da classe 'VehiclePolicy' para verificar se o usuário autenticado tem
-permissão para ver a lista de veículos.
-Se o usuário tiver permissão, ele retorna uma coleção de todos os veículos no banco de dados, cada um
-transformado em um 'VehicleResource'.</p>
+<p>This method retrieves all vehicle instances associated with the authenticated user's ID.
+It ensures that the user has the permission to view their own vehicles.</p>
 
 <span id="example-requests-GETapi-v1-vehicles">
 <blockquote>Example request:</blockquote>
@@ -1744,18 +2028,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="vehicles-POSTapi-v1-vehicles">Armazena um novo veículo no banco de dados.</h2>
+                    <h2 id="vehicles-POSTapi-v1-vehicles">Store a new vehicle.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
-'authorize' com a ação 'create' e a classe 'Vehicle'. Em seguida, ele valida os dados da solicitação usando a
-classe 'StoreVehicleRequest'.</p>
-<p>Se os dados forem válidos, ele cria um novo veículo no banco de dados usando o método 'create' na classe
-'Vehicle', passando os dados validados.
-Finalmente, ele retorna uma nova instância de 'VehicleResource', passando o veículo recém-criado.</p>
+<p>Validates the incoming request and creates a new vehicle instance for the authenticated user.
+It ensures that the user has the permission to create a new vehicle.</p>
 
 <span id="example-requests-POSTapi-v1-vehicles">
 <blockquote>Example request:</blockquote>
@@ -1773,7 +2053,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'plate_number' =&gt; 'cupiditate',
+            'plate_number' =&gt; 'reprehenderit',
         ],
     ]
 );
@@ -1793,7 +2073,7 @@ const headers = {
 };
 
 let body = {
-    "plate_number": "cupiditate"
+    "plate_number": "reprehenderit"
 };
 
 fetch(url, {
@@ -1893,22 +2173,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plate_number"                data-endpoint="POSTapi-v1-vehicles"
-               value="cupiditate"
+               value="reprehenderit"
                data-component="body">
     <br>
-<p>Example: <code>cupiditate</code></p>
+<p>Example: <code>reprehenderit</code></p>
         </div>
         </form>
 
-                    <h2 id="vehicles-GETapi-v1-vehicles--id-">Exibe as informações de um veículo específico.</h2>
+                    <h2 id="vehicles-GETapi-v1-vehicles--id-">Display the specified vehicle.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método primeiro verifica se o usuário autenticado tem permissão para visualizar o veículo, usando o
-método 'authorize' com a ação 'view' e o veículo específico.
-Se o usuário tiver permissão, ele retorna uma nova instância de 'VehicleResource', passando o veículo específico.</p>
+<p>Retrieves and returns information about a specific vehicle, ensuring that the user has permission to view it.</p>
 
 <span id="example-requests-GETapi-v1-vehicles--id-">
 <blockquote>Example request:</blockquote>
@@ -2061,19 +2339,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="vehicles-PUTapi-v1-vehicles--id-">Atualiza as informações de um veículo específico.</h2>
+                    <h2 id="vehicles-PUTapi-v1-vehicles--id-">Update the specified vehicle.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método primeiro verifica se o usuário autenticado tem permissão para atualizar o veículo, usando o método
-'authorize' com a ação 'update' e o veículo específico.
-Em seguida, ele valida os dados da solicitação usando a classe 'StoreVehicleRequest'.
-Se os dados forem válidos, ele atualiza o veículo no banco de dados usando o método 'update' na instância do
-veículo, passando os dados validados.
-Finalmente, ele retorna uma resposta JSON com uma nova instância de 'VehicleResource', passando o veículo
-atualizado, e um código de status HTTP 202 (Aceito).</p>
+<p>Validates the incoming request and updates the specified vehicle instance.
+It ensures that the user has the permission to update the vehicle.</p>
 
 <span id="example-requests-PUTapi-v1-vehicles--id-">
 <blockquote>Example request:</blockquote>
@@ -2091,7 +2364,7 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'plate_number' =&gt; 'quisquam',
+            'plate_number' =&gt; 'eaque',
         ],
     ]
 );
@@ -2111,7 +2384,7 @@ const headers = {
 };
 
 let body = {
-    "plate_number": "quisquam"
+    "plate_number": "eaque"
 };
 
 fetch(url, {
@@ -2227,24 +2500,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plate_number"                data-endpoint="PUTapi-v1-vehicles--id-"
-               value="quisquam"
+               value="eaque"
                data-component="body">
     <br>
-<p>Example: <code>quisquam</code></p>
+<p>Example: <code>eaque</code></p>
         </div>
         </form>
 
-                    <h2 id="vehicles-DELETEapi-v1-vehicles--id-">Deleta um veículo específico.</h2>
+                    <h2 id="vehicles-DELETEapi-v1-vehicles--id-">Remove the specified vehicle.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método primeiro verifica se o usuário autenticado tem permissão para deletar o veículo, usando o método
-'authorize' com a ação 'delete' e o veículo específico.
-Se o usuário tiver permissão, ele deleta o veículo do banco de dados usando o método 'delete' na instância do veículo.
-Finalmente, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação foi
-bem-sucedida e não há conteúdo para retornar.</p>
+<p>Deletes the specified vehicle instance, ensuring that the user has permission to delete it.
+Returns a no-content response on successful deletion.</p>
 
 <span id="example-requests-DELETEapi-v1-vehicles--id-">
 <blockquote>Example request:</blockquote>
@@ -2385,20 +2655,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="zones-GETapi-v1-zones">Método para listar todas as zonas.</h2>
+                                <h2 id="zones-GETapi-v1-zones">List all zones.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Este método é responsável por retornar uma coleção de todas as zonas
-existentes no banco de dados. Ele primeiro autoriza a ação 'viewAny' para
-a classe Zone, o que significa que qualquer usuário, autenticado ou não,
-tem permissão para ver a lista de zonas.</p>
-<p>Após a autorização, ele recupera todas as zonas do banco de dados usando
-o método 'all' na classe 'Zone'. Em seguida, ele retorna essas zonas como
-uma coleção de recursos 'ZoneResource', que transforma cada instância de
-'Zone' em um array formatado para a resposta da API.</p>
+<p>This method retrieves all zone instances. It ensures that the user has the permission to view any zone.</p>
 
 <span id="example-requests-GETapi-v1-zones">
 <blockquote>Example request:</blockquote>

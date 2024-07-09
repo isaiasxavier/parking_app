@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\StoreVehicleRequest;
 use App\Http\Resources\VehicleResource;
 use App\Models\Vehicle;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -27,16 +26,12 @@ class VehicleController extends Controller
     use AuthorizesRequests;
 
     /**
-     * Exibe uma lista de todos os veículos.
+     * List all vehicles for the authenticated user.
      *
-     * Este método usa a política 'viewAny' da classe 'VehiclePolicy' para verificar se o usuário autenticado tem
-     * permissão para ver a lista de veículos.
-     * Se o usuário tiver permissão, ele retorna uma coleção de todos os veículos no banco de dados, cada um
-     * transformado em um 'VehicleResource'.
+     * This method retrieves all vehicle instances associated with the authenticated user's ID.
+     * It ensures that the user has the permission to view their own vehicles.
      *
-     * @return AnonymousResourceCollection Uma coleção de recursos 'VehicleResource'.
-     *
-     * @throws AuthorizationException Se o usuário autenticado não tiver permissão para ver a lista de veículos.
+     * @return AnonymousResourceCollection Returns a collection of vehicle resources.
      */
     public function index(): AnonymousResourceCollection
     {
@@ -50,20 +45,13 @@ class VehicleController extends Controller
     }
 
     /**
-     * Armazena um novo veículo no banco de dados.
+     * Store a new vehicle.
      *
-     * Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
-     * 'authorize' com a ação 'create' e a classe 'Vehicle'. Em seguida, ele valida os dados da solicitação usando a
-     * classe 'StoreVehicleRequest'.
+     * Validates the incoming request and creates a new vehicle instance for the authenticated user.
+     * It ensures that the user has the permission to create a new vehicle.
      *
-     * Se os dados forem válidos, ele cria um novo veículo no banco de dados usando o método 'create' na classe
-     * 'Vehicle', passando os dados validados.
-     * Finalmente, ele retorna uma nova instância de 'VehicleResource', passando o veículo recém-criado.
-     *
-     * @param  StoreVehicleRequest  $request  A solicitação recebida. Deve conter os dados do veículo a ser criado.
-     * @return VehicleResource Uma representação do veículo recém-criado.
-     *
-     * @throws AuthorizationException Se o usuário autenticado não tiver permissão para criar um veículo.
+     * @param  StoreVehicleRequest  $request  The request containing the necessary information to create a new vehicle.
+     * @return VehicleResource Returns a vehicle resource on successful creation.
      */
     public function store(StoreVehicleRequest $request): VehicleResource
     {
@@ -73,16 +61,12 @@ class VehicleController extends Controller
     }
 
     /**
-     * Exibe as informações de um veículo específico.
+     * Display the specified vehicle.
      *
-     * Este método primeiro verifica se o usuário autenticado tem permissão para visualizar o veículo, usando o
-     * método 'authorize' com a ação 'view' e o veículo específico.
-     * Se o usuário tiver permissão, ele retorna uma nova instância de 'VehicleResource', passando o veículo específico.
+     * Retrieves and returns information about a specific vehicle, ensuring that the user has permission to view it.
      *
-     * @param  Vehicle  $vehicle  O veículo a ser visualizado.
-     * @return VehicleResource Uma representação do veículo.
-     *
-     * @throws AuthorizationException Se o usuário autenticado não tiver permissão para visualizar o veículo.
+     * @param  Vehicle  $vehicle  The vehicle instance to retrieve.
+     * @return VehicleResource Returns a vehicle resource if found and authorized.
      */
     public function show(Vehicle $vehicle): VehicleResource
     {
@@ -92,21 +76,14 @@ class VehicleController extends Controller
     }
 
     /**
-     * Atualiza as informações de um veículo específico.
+     * Update the specified vehicle.
      *
-     * Este método primeiro verifica se o usuário autenticado tem permissão para atualizar o veículo, usando o método
-     * 'authorize' com a ação 'update' e o veículo específico.
-     * Em seguida, ele valida os dados da solicitação usando a classe 'StoreVehicleRequest'.
-     * Se os dados forem válidos, ele atualiza o veículo no banco de dados usando o método 'update' na instância do
-     * veículo, passando os dados validados.
-     * Finalmente, ele retorna uma resposta JSON com uma nova instância de 'VehicleResource', passando o veículo
-     * atualizado, e um código de status HTTP 202 (Aceito).
+     * Validates the incoming request and updates the specified vehicle instance.
+     * It ensures that the user has the permission to update the vehicle.
      *
-     * @param  StoreVehicleRequest  $request  A solicitação recebida. Deve conter os novos dados do veículo.
-     * @param  Vehicle  $vehicle  O veículo a ser atualizado.
-     * @return JsonResponse Uma resposta JSON contendo a representação do veículo atualizado e um código de status HTTP 202.
-     *
-     * @throws AuthorizationException Se o usuário autenticado não tiver permissão para atualizar o veículo.
+     * @param  StoreVehicleRequest  $request  The request containing the updated information for the vehicle.
+     * @param  Vehicle  $vehicle  The vehicle instance to update.
+     * @return JsonResponse Returns a JSON response with the updated vehicle resource on success.
      */
     public function update(StoreVehicleRequest $request, Vehicle $vehicle): JsonResponse
     {
@@ -119,18 +96,13 @@ class VehicleController extends Controller
     }
 
     /**
-     * Deleta um veículo específico.
+     * Remove the specified vehicle.
      *
-     * Este método primeiro verifica se o usuário autenticado tem permissão para deletar o veículo, usando o método
-     * 'authorize' com a ação 'delete' e o veículo específico.
-     * Se o usuário tiver permissão, ele deleta o veículo do banco de dados usando o método 'delete' na instância do veículo.
-     * Finalmente, ele retorna uma resposta HTTP com status 204 (No Content), indicando que a operação foi
-     * bem-sucedida e não há conteúdo para retornar.
+     * Deletes the specified vehicle instance, ensuring that the user has permission to delete it.
+     * Returns a no-content response on successful deletion.
      *
-     * @param  Vehicle  $vehicle  O veículo a ser deletado.
-     * @return \Illuminate\Http\Response Uma resposta HTTP com status 204.
-     *
-     * @throws AuthorizationException Se o usuário autenticado não tiver permissão para deletar o veículo.
+     * @param  Vehicle  $vehicle  The vehicle instance to delete.
+     * @return \Illuminate\Http\Response Returns a no-content response on successful deletion.
      */
     public function destroy(Vehicle $vehicle): \Illuminate\Http\Response
     {

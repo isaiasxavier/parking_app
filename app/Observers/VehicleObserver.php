@@ -5,21 +5,19 @@ namespace App\Observers;
 use App\Models\Vehicle;
 
 /**
- * Class VehicleObserver
+ * VehicleObserver Class
  *
- * Esta classe é responsável por observar os eventos do ciclo de vida do modelo Vehicle.
- * Ela define ações específicas que devem ocorrer quando certos eventos ocorrem no modelo Vehicle.
+ * Observes the Vehicle model's events to automatically handle model-specific actions
+ * such as setting the user_id to the currently authenticated user's ID when a Vehicle model is being created.
  */
 class VehicleObserver
 {
     /**
-     * Método 'creating'
+     * Handle the Vehicle "creating" event.
      *
-     * Este método é acionado antes de um registro do modelo Vehicle ser criado.
-     * Ele verifica se o usuário está autenticado e, em caso afirmativo, atribui o ID do usuário autenticado
-     * ao campo 'user_id' do modelo Vehicle que está sendo criado.
+     * Automatically sets the user_id to the currently authenticated user's ID when a Vehicle model is being created.
      *
-     * @param  Vehicle  $vehicle  - A instância do modelo Vehicle que está sendo criada.
+     * @param  Vehicle  $vehicle  The Vehicle model instance being created.
      */
     public function creating(Vehicle $vehicle): void
     {

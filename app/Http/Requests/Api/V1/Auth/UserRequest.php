@@ -15,6 +15,18 @@ use Illuminate\Validation\Rules\Password;
  */
 class UserRequest extends FormRequest
 {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * This method defines the validation rules for the registration request. It ensures that:
+     * - `name` is required, must be a string, at most 255 characters, and only contain letters, spaces, apostrophes, and hyphens.
+     * - `email` is required, must be a string, a valid email format, at most 255 characters, and unique in the `users` table.
+     * - `password` is required, must be confirmed, and meet the application's password security requirements.
+     *
+     * These rules help in maintaining the integrity of the user registration process by ensuring that only valid and properly formatted data is processed.
+     *
+     * @return array An array of validation rules.
+     */
     public function rules(): array
     {
         return [

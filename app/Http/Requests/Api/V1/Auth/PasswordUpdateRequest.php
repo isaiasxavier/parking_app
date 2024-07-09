@@ -15,17 +15,16 @@ use Illuminate\Foundation\Http\FormRequest;
 class PasswordUpdateRequest extends FormRequest
 {
     /**
-     * Define as regras de validação para a solicitação de atualização de senha.
+     * Get the validation rules that apply to the request.
      *
-     * Este método retorna um array associativo onde as chaves são os nomes dos campos de entrada e os valores são as
-     * regras de validação para esses campos.
+     * This method defines the validation rules for the password update request. It ensures that:
+     * - `current_password` is required and must match the user's current password.
+     * - `password` is required, must be confirmed, and meets the application's security requirements.
      *
-     * O campo 'current_password' é obrigatório e deve ser a senha atual do usuário.
-     * O campo 'password' é obrigatório e deve ser confirmado através do campo 'password_confirmation'.
-     * A regra 'confirmed:api_reset_password' parece ser uma regra de validação personalizada que está sendo usada
-     * para confirmar a nova senha.
+     * These rules help in maintaining the security and integrity of the user's account by ensuring that only
+     * valid and authorized password updates are processed.
      *
-     * @return array As regras de validação para a solicitação de atualização de senha.
+     * @return array An array of validation rules.
      */
     public function rules(): array
     {

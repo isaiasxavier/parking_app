@@ -16,17 +16,16 @@ use Illuminate\Validation\Rule;
 class ParkingRequest extends FormRequest
 {
     /**
-     * Define as regras de validação para a solicitação.
+     * Get the validation rules that apply to the request.
      *
-     * Este método retorna um array associativo onde as chaves são os nomes dos campos da solicitação e os valores
-     * são as regras de validação para esses campos.
+     * This method defines the validation rules for the parking request. It ensures that:
+     * - `vehicle_id` is required, must be an integer, and must exist in the `vehicles` table where `deleted_at` is null
+     * and the `user_id` matches the authenticated user's ID.
+     * - `zone_id` is required, must be an integer, and must exist in the `zones` table.
      *
-     * As regras de validação para 'vehicle_id' e 'zone_id' são definidas para garantir que eles são obrigatórios e
-     * são inteiros. Além disso, eles devem existir na tabela correspondente no banco de dados.
+     * These rules help in maintaining the integrity of the parking request data by ensuring that only valid and authorized data is processed.
      *
-     * Para 'vehicle_id', uma regra adicional é definida para garantir que o veículo pertence ao usuário autenticado e não foi excluído.
-     *
-     * @return array As regras de validação para a solicitação.
+     * @return array An array of validation rules.
      */
     public function rules(): array
     {
@@ -37,9 +36,6 @@ class ParkingRequest extends FormRequest
                         ->where('user_id', $this->user()->id);
                 }), ],
             'zone_id' => ['required', 'integer', Rule::exists('zones', 'id')],
-            /*'start_time' => ['nullable', 'date'],
-            'stop_time' => ['nullable', 'date'],
-            'total_price' => ['nullable', 'integer'],*/
         ];
     }
 

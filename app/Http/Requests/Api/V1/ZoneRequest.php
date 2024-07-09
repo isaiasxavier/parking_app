@@ -14,6 +14,18 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class ZoneRequest extends FormRequest
 {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * This method defines the validation rules for zone operations. It ensures that:
+     * - `name` is required.
+     * - `price_per_hour` is required.
+     *
+     * These rules help in maintaining the integrity of the zone data by ensuring that only valid and authorized
+     * data is processed.
+     *
+     * @return array An array of validation rules.
+     */
     public function rules(): array
     {
         return [

@@ -17,22 +17,19 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
  */
 class RegisterController extends Controller
 {
+    /**
+     * Register a new user.
+     *
+     * This method processes a UserRequest to validate the input data and creates a new user in the database.
+     * It hashes the user's password for security, registers the user, and generates an access token for immediate use.
+     * The method also logs the device used during registration for potential future security checks.
+     *
+     * @param  UserRequest  $request  The request object containing the validated input data for user registration.
+     * @return JsonResponse Returns a JSON response with the user's access token and an HTTP 201 Created status code.
+     */
     public function __invoke(UserRequest $request)
     {
-        /**
-         * Handle the incoming request.
-         *
-         * Este método é responsável por registrar um novo usuário no sistema.
-         * Ele primeiro valida os dados da solicitação usando a classe 'UserRequest'.
-         * Em seguida, ele cria um novo usuário com os dados validados.
-         * A senha do usuário é criptografada usando a função 'Hash::make'.
-         * Em seguida, ele dispara um evento 'Registered' para o novo usuário.
-         * O nome do dispositivo é extraído do agente do usuário sendo usado como o nome do token.
-         * Finalmente, ele retorna uma resposta JSON que inclui o token de acesso.
-         *
-         * @param  UserRequest  $request  A solicitação recebida. Deve conter os dados do usuário a ser registrado.
-         * @return JsonResponse Uma resposta JSON contendo o token de acesso do novo usuário.
-         */
+
         $validatedData = $request->validated();
 
         $user = User::create([

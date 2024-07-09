@@ -26,6 +26,14 @@ class ParkingController extends Controller
 {
     use AuthorizesRequests;
 
+    /**
+     * List all parkings.
+     *
+     * This method retrieves all parking instances, including their related zone and vehicle information.
+     * It also calculates the total price for each parking session that is still active.
+     *
+     * @return AnonymousResourceCollection Returns a collection of parking resources.
+     */
     public function index(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Parking::class);
@@ -44,20 +52,12 @@ class ParkingController extends Controller
     }
 
     /**
-     * Inicia um estacionamento.
+     * Start a new parking session.
      *
-     * Este método primeiro verifica se o usuário autenticado tem permissão para criar um veículo, usando o método
-     * 'authorize' com a ação 'create' e a classe 'Parking'.
+     * Validates the incoming request and creates a new parking session if the vehicle is not already in an active session.
+     * It loads the related vehicle and zone information for the newly created parking session.
      *
-     * Este método valida os dados da solicitação usando a classe ParkingRequest.
-     * Se a validação passar, ele verifica se já existe um estacionamento ativo para o veículo especificado (através
-     * do 'start_time') e se a coluna 'stop_time' é nula (o que significa que o veículo ainda nao finalizou o
-     * estacionamento).
-     * Se existir, ele retorna uma resposta JSON com um erro.
-     * Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do
-     * estacionamento.
-     *
-     * @param  ParkingRequest  $request  A solicitação HTTP.
+     * @param  ParkingRequest  $request  The parking request containing the necessary information to start a parking session.
      * @return ParkingResource|JsonResponse
      */
     public function start(ParkingRequest $request)
@@ -79,20 +79,12 @@ class ParkingController extends Controller
     }
 
     /**
-     * Exibe um estacionamento específico.
+     * Display a specific parking session.
      *
-     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto
-     * Parking
-     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o
-     * estacionamento correspondente no banco de dados usando o ID fornecido na rota.
+     * Retrieves and returns information about a specific parking session, including related zone and vehicle information,
+     * if the session exists and the user has permission to view it.
      *
-     * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
-     * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para visualizá-lo.
-     * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-     * Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do
-     * estacionamento.
-     *
-     * @param  int  $id  O ID do estacionamento a ser exibido.
+     * @param  int  $id  The ID of the parking session to retrieve.
      * @return ParkingResource|JsonResponse
      */
     public function show(int $id)
@@ -111,24 +103,13 @@ class ParkingController extends Controller
     }
 
     /**
-     * Para o estacionamento.
+     * Stop an active parking session.
      *
-     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto
-     * Parking
-     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o
-     * estacionamento correspondente no banco de dados usando o ID fornecido na rota.
+     * Finds an active parking session by ID and stops it by setting the stop time and calculating the total price.
+     * It checks if the session exists and if it has not already been stopped.
      *
-     * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
-     * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para atualizá-lo.
-     * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-     * Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é
-     * nulo). Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422. Se o
-     * estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e
-     * calcula o preço total. Finalmente, o método retorna uma instância de ParkingResource, que é uma representação
-     * JSON do estacionamento.
-     *
-     * @param  int  $id  O ID do estacionamento a ser parado.
-     * @return ParkingResource|JsonResponse
+     * @param  int  $id  The ID of the parking session to stop.
+     * @return ParkingResource|JsonResponse Returns the updated parking resource on success, or a JSON response with errors on failure.
      */
     public function stop(int $id)
     {
@@ -156,6 +137,14 @@ class ParkingController extends Controller
         return new ParkingResource($parking);
     }
 
+    /**
+     * List all stopped parkings.
+     *
+     * Retrieves all parking sessions, including their related zone and vehicle information, regardless of their status.
+     * This method is similar to index but does not filter by active sessions.
+     *
+     * @return AnonymousResourceCollection Returns a collection of all parking resources, including stopped sessions.
+     */
     public function stoppedParking(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Parking::class);
@@ -164,36 +153,4 @@ class ParkingController extends Controller
 
         return ParkingResource::collection($parkings);
     }
-
-    /*public function store(ParkingRequest $request): ParkingResource
-    {
-        $this->authorize('create', Parking::class);
-
-        return new ParkingResource(Parking::create($request->validated()));
-    }
-
-    public function show(Parking $parking): ParkingResource
-    {
-        $this->authorize('view', $parking);
-
-        return new ParkingResource($parking);
-    }
-
-    public function update(ParkingRequest $request, Parking $parking): ParkingResource
-    {
-        $this->authorize('update', $parking);
-
-        $parking->update($request->validated());
-
-        return new ParkingResource($parking);
-    }
-
-    public function destroy(Parking $parking): JsonResponse
-    {
-        $this->authorize('delete', $parking);
-
-        $parking->delete();
-
-        return response()->json();
-    }*/
 }
