@@ -26,6 +26,23 @@ class ParkingController extends Controller
 {
     use AuthorizesRequests;
 
+    public function index(): AnonymousResourceCollection
+    {
+        $this->authorize('viewAny', Parking::class);
+
+        $parkings = Parking::with(['zone', 'vehicle'])->get()->map(function ($parking) {
+            if ($parking->stop_time === null) {
+                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time);
+            } else {
+                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time, $parking->stop_time);
+            }
+
+            return $parking;
+        });
+
+        return ParkingResource::collection($parkings);
+    }
+
     /**
      * Inicia um estacionamento.
      *
@@ -37,7 +54,8 @@ class ParkingController extends Controller
      * do 'start_time') e se a coluna 'stop_time' é nula (o que significa que o veículo ainda nao finalizou o
      * estacionamento).
      * Se existir, ele retorna uma resposta JSON com um erro.
-     * Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do estacionamento.
+     * Se não existir, ele cria um novo registro de estacionamento e retorna uma resposta JSON com os dados do
+     * estacionamento.
      *
      * @param  ParkingRequest  $request  A solicitação HTTP.
      * @return ParkingResource|JsonResponse
@@ -63,14 +81,16 @@ class ParkingController extends Controller
     /**
      * Exibe um estacionamento específico.
      *
-     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
-     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
-     * correspondente no banco de dados usando o ID fornecido na rota.
+     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto
+     * Parking
+     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o
+     * estacionamento correspondente no banco de dados usando o ID fornecido na rota.
      *
      * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
      * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para visualizá-lo.
      * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-     * Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
+     * Se o usuário tiver permissão, o método retorna uma instância de ParkingResource, que é uma representação JSON do
+     * estacionamento.
      *
      * @param  int  $id  O ID do estacionamento a ser exibido.
      * @return ParkingResource|JsonResponse
@@ -93,17 +113,19 @@ class ParkingController extends Controller
     /**
      * Para o estacionamento.
      *
-     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto Parking
-     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o estacionamento
-     * correspondente no banco de dados usando o ID fornecido na rota.
+     * Este método recebe um ID de estacionamento como parâmetro. O Laravel não resolve automaticamente o objeto
+     * Parking
+     * através do mecanismo de injeção de dependência neste caso. Em vez disso, o método busca manualmente o
+     * estacionamento correspondente no banco de dados usando o ID fornecido na rota.
      *
      * Se o estacionamento não for encontrado, o método retorna uma resposta JSON com um erro 404.
      * Se o estacionamento for encontrado, o método verifica se o usuário autenticado tem permissão para atualizá-lo.
      * Se o usuário não tiver permissão, o método retorna uma resposta JSON com um erro 403.
-     * Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é nulo).
-     * Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422.
-     * Se o estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e calcula o preço total.
-     * Finalmente, o método retorna uma instância de ParkingResource, que é uma representação JSON do estacionamento.
+     * Se o usuário tiver permissão, o método verifica se o estacionamento já foi parado (ou seja, se 'stop_time' não é
+     * nulo). Se o estacionamento já foi parado, o método retorna uma resposta JSON com um erro 422. Se o
+     * estacionamento não foi parado, o método atualiza o campo 'stop_time' do estacionamento para a hora atual e
+     * calcula o preço total. Finalmente, o método retorna uma instância de ParkingResource, que é uma representação
+     * JSON do estacionamento.
      *
      * @param  int  $id  O ID do estacionamento a ser parado.
      * @return ParkingResource|JsonResponse
@@ -134,19 +156,11 @@ class ParkingController extends Controller
         return new ParkingResource($parking);
     }
 
-    public function index(): AnonymousResourceCollection
+    public function stoppedParking(): AnonymousResourceCollection
     {
         $this->authorize('viewAny', Parking::class);
 
-        $parkings = Parking::with(['zone', 'vehicle'])->get()->map(function ($parking) {
-            if ($parking->stop_time === null) {
-                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time);
-            } else {
-                $parking->total_price = ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time, $parking->stop_time);
-            }
-
-            return $parking;
-        });
+        $parkings = Parking::with(['zone', 'vehicle'])->get();
 
         return ParkingResource::collection($parkings);
     }
