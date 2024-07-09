@@ -97,7 +97,7 @@ class ParkingController extends Controller
      */
     public function show(int $id)
     {
-        $parking = Parking::find($id);
+        $parking = Parking::with(['zone', 'vehicle'])->find($id);
 
         if (! $parking) {
             return response()->json([
